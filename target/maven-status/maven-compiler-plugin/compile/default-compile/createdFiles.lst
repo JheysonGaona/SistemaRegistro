@@ -1,0 +1,6 @@
+datos\ConexionDB.class
+ec\edu\jsgaona\sistemaregistro\SistemaRegistro.class
+datos\PersonaDAO.class
+presentacion\PersonaMain.class
+negocio\Persona.class
+negocio\PersonaServicio.class
