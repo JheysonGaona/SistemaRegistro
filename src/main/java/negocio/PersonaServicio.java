@@ -6,12 +6,12 @@ package negocio;
 
 import modelo.Persona;
 import datos.PersonaDAO;
-import java.sql.SQLException;
 
 /**
  *
- * @author XRLab
+ * @author Jheyson Gaona
  */
+
 public class PersonaServicio {
     
     private final PersonaDAO personaDAO;
@@ -20,13 +20,10 @@ public class PersonaServicio {
     public PersonaServicio(){
         this.personaDAO = new PersonaDAO();
     }
-    
+
     
     public void AgregarNuevaPersona(Persona persona){
-        try {
-            personaDAO.AgregarPersona(persona);
-        }catch(SQLException ex){
-            System.out.println("Erro en capa negocio, no se puede agregar persona");
-        }
+        System.out.println("Capa de negocio");
+        int resultado = personaDAO.VerificarAgregarPersona(persona);
     }
 }

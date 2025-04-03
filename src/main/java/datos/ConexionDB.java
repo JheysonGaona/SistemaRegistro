@@ -15,6 +15,7 @@ import java.sql.SQLException;
 public class ConexionDB {
     
     // Variables de la clase
+    // 5432 para PostgreSQL
     private static final String URL = "jdbc:mysql://localhost:3306/persona_database";
     private static final String USER = "root";
     private static final String PASSWORD = "jheyson2606.";
