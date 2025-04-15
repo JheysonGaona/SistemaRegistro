@@ -12,15 +12,16 @@ import javax.persistence.Persistence;
  * @author XRLab
  */
 public class PersistenceUtil {
+    
     private static final EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("SistemaRegistroUsuario");
-
+    
     public static EntityManagerFactory getEntityManagerFactory() {
         return emf;
     }
-
-    public static void cerrar() {
-        if (emf != null && emf.isOpen()) {
+    
+    public static void Cerrar(){
+        if(emf != null && emf.isOpen()){
             emf.close();
         }
     }

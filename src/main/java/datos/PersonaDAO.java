@@ -4,22 +4,14 @@
  */
 package datos;
 
-/*
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-*/        
-import util.PersistenceUtil;
-
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-
 import modelo.Persona;
+import util.PersistenceUtil;
 
 /**
  *
- * @author Jheyson Gaona
+ * @author JHeyson Gaona
  */
 public class PersonaDAO {
     
@@ -31,70 +23,90 @@ public class PersonaDAO {
     }
     
     
-    // Se emplea este metodo para poder agregar la persona a la database
-    // [0] Registro exitoso, [1] Fallo de registro
-    public int AgregarPersona(Persona persona) {
-        int resultado = 0;
-        // Inicia una sesión de trabajo con la base de datos
+    /*
+    public void AgregarPersona(Persona persona) throws SQLException{
+        String sql = "INSERT INTO usuario (nombre, correo) VALUES (?, ?)";
+        Connection conn = ConexionDB.AbrirConexion();
+        try (PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){
+            stmt.setString(1, persona.getNombre());
+            stmt.setString(2, persona.getCorreo());
+            
+            int fliasAfectadas = stmt.executeUpdate();
+            if(fliasAfectadas > 0){
+                try(ResultSet generateKeys = stmt.getGeneratedKeys()) {
+                    if(generateKeys.next()){
+                        int idGenerado = generateKeys.getInt(1);
+                        System.out.println("Registro Exitoso con ID: " + idGenerado);
+                    }else{
+                        System.out.println("No se generó ningún ID.");
+                    }
+                }
+            }else{
+                System.out.println("No se pudo insertar el registro");
+            }
+        }catch(SQLException ex){
+            System.out.println("Error al agregar persona: " + ex.getMessage());
+        } finally {
+            ConexionDB.CerrarConexion(conn);
+        }
+    }
+¨   */
+    
+    public void AgregarPersona(Persona personaAgregar){
+        // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
-
         try {
             // Se inicia la transicion
             em.getTransaction().begin();
+            
             // Se inserta la persona
-            em.persist(persona);
-            // Confirma y guarda los cambios
+            em.persist(personaAgregar);
+            
+            // Confirmar y guardar los cambios
             em.getTransaction().commit();
-        } catch (Exception e) {
+        } catch(Exception ex){
             // Revertir todo, no guardar nada
             em.getTransaction().rollback();
-            System.out.println("Error: " + e.getMessage());
-            resultado = 1;
-        } finally {
-            // Cierra la sesion de trabajo y libera los recursos
+            System.err.println("Error de sesion de trabajo: " + ex.getMessage());
+        }finally{
             em.close();
         }
-        return resultado;
     }
     
     
-    // [0] ya existe la Persona, [1] No existe la persona, registro exitoso
-    // [2] Hubo un error inesperado
-    public int VerificarAgregarPersona(Persona persona) {
-        System.out.println("Capa de datos");
-        int resultado = 0;
-        // Inicia una sesión de trabajo con la base de datos
+    // [0] ya existe la persomna  [1] no existe la persona, registro exitoso
+    // [2] Huno un error inesperado
+    public int VerificarAgregarPersona(Persona personaAgregar){
+        int result = 0;
+         // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
-
         try {
             Persona personaExiste = em.createQuery(
                 "SELECT p FROM Persona p WHERE p.numIdentificacion = :numId", Persona.class)
-                .setParameter("numId", persona.getNumIdentificacion())
-                .getSingleResult();
+            .setParameter("numId", personaAgregar.getNumIdentificacion())
+            .getSingleResult();
             
             if(personaExiste != null){
                 System.out.println("YA EXISTE LA PERSONA");
-                return resultado;
+                em.close();
+                return result;
             }
-
-        } catch (NoResultException nre) {
+        } catch(NoResultException ex){
             // Se inicia la transicion
             em.getTransaction().begin();
             // Se inserta la persona
-            em.persist(persona);
-            // Confirma y guarda los cambios
+            em.persist(personaAgregar);
+            // Confirmar y guardar los cambios
             em.getTransaction().commit();
-            resultado = 1;
-            System.out.println("AGREGANDO NUEVA PERSONA");
-        } catch (Exception ex){
-            if(em.getTransaction().isActive()){
-                em.getTransaction().rollback();
-            }
-            System.out.println("Error: " + ex.getMessage());
-            resultado = 2;
-        } finally {
+            result = 1;
+        }catch(Exception ex){
+            // Revertir todo, no guardar nada
+            em.getTransaction().rollback();
+            System.err.println("Error de sesion de trabajo: " + ex.getMessage());
+            result = 2;
+        }finally{
             em.close();
         }
-        return resultado;
+        return result;
     }
 }

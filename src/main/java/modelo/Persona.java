@@ -3,14 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+
 import java.time.LocalDate;
 import javax.persistence.*;
 
 /**
  *
- * @author Jheyson Gaona
+ * @author Jhyeson Gaona
  */
-// @Entity(name = "UsuarioEntidad")
+
 @Entity
 @Table(name = "usuario")
 public class Persona {
@@ -31,13 +32,27 @@ public class Persona {
     @Column(nullable = false)
     private String correo;
     
-    @Column
+    @Column(nullable = false)
     private LocalDate fechaNacimiento;
     
+    @Column
+    private int edad;
+
     
     public Persona(){
         
     }
+    
+    public Persona(String nombre, String apellido, String numIdentificacion,
+            String correo, LocalDate fechaNacimiento, int edad){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.numIdentificacion = numIdentificacion;
+        this.correo = correo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.edad = edad;
+    }
+    
     
     public Persona(String nombre, String apellido, String numIdentificacion,
             String correo, LocalDate fechaNacimiento){
@@ -49,18 +64,17 @@ public class Persona {
     }
     
     
-    public Persona(int id, String nombre, String apellido, String numIdentificacion, 
-            String correo, LocalDate fechaNacimiento){
+    public Persona(int id, String nombre, String apellido, String numIdentificacion,
+            String correo, LocalDate fechaNacimiento, int edad){
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.numIdentificacion = numIdentificacion;
         this.correo = correo;
         this.fechaNacimiento = fechaNacimiento;
+        this.edad = edad;
     }
-    
-    
-    // Getters and Setters
+
     public int getId() {
         return id;
     }
@@ -84,7 +98,7 @@ public class Persona {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    
+
     public String getNumIdentificacion() {
         return numIdentificacion;
     }
@@ -107,5 +121,13 @@ public class Persona {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 }

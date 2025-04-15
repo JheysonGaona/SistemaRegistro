@@ -6,12 +6,14 @@ package negocio;
 
 import modelo.Persona;
 import datos.PersonaDAO;
+/*
+import java.sql.SQLException;
+*/
 
 /**
  *
  * @author Jheyson Gaona
  */
-
 public class PersonaServicio {
     
     private final PersonaDAO personaDAO;
@@ -20,10 +22,10 @@ public class PersonaServicio {
     public PersonaServicio(){
         this.personaDAO = new PersonaDAO();
     }
-
+    
     
     public void AgregarNuevaPersona(Persona persona){
-        System.out.println("Capa de negocio");
-        int resultado = personaDAO.VerificarAgregarPersona(persona);
+        persona.setEdad(20);
+        personaDAO.AgregarPersona(persona);
     }
 }

@@ -15,42 +15,61 @@ import util.PersistenceUtil;
  */
 public class ProductoDAO {
     
-    
-    public int VerificarAgregarProducto(Producto producto) {
-        int resultado = 0;
-
-        // Inicia una sesión de trabajo con la base de datos
+    public void AgregarProducto(Producto productoAgregar){
+        // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
-        
         try {
-            Producto productoExiste = em.createQuery(
-                "SELECT p FROM Producto p WHERE p.codigo = :numCodigo", Producto.class)
-                .setParameter("numCodigo", producto.getCodigo())
-                .getSingleResult();
-            
-            if(productoExiste != null){
-                System.out.println("YA EXISTE EL Producto");
-                return resultado;
-            }
-
-        } catch (NoResultException nre) {
             // Se inicia la transicion
             em.getTransaction().begin();
-            // Se inserta la persona
-            em.persist(producto);
-            // Confirma y guarda los cambios
+            
+            // Se inserta el producto
+            em.persist(productoAgregar);
+            
+            // Confirmar y guardar los cambios
             em.getTransaction().commit();
-            resultado = 1;
-            System.out.println("AGREGANDO NUEVo PRODUCTO");
-        } catch (Exception ex){
-            if(em.getTransaction().isActive()){
-                em.getTransaction().rollback();
-            }
-            System.out.println("Error: " + ex.getMessage());
-            resultado = 2;
-        } finally {
+        } catch(Exception ex){
+            // Revertir todo, no guardar nada
+            em.getTransaction().rollback();
+            System.err.println("Error de sesion de trabajo: " + ex.getMessage());
+        }finally{
             em.close();
         }
-        return resultado;
+    }
+    
+    
+    // [0] ya existe el producto  [1] no existe el producto, registro exitoso
+    // [2] Huno un error inesperado
+    public int VerificarAgregarPersona(Producto productoAgregar){
+        int result = 0;
+         // Inicia la sesion de trabajo con la base de datos
+        EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            Producto productoExiste = em.createQuery(
+                "SELECT p FROM Producto p WHERE p.codigo = :numCod", Producto.class)
+            .setParameter("numCod", productoAgregar.getCodigo())
+            .getSingleResult();
+            
+            if(productoExiste != null){
+                System.out.println("YA EXISTE EL PRODUCTO");
+                em.close();
+                return result;
+            }
+        } catch(NoResultException ex){
+            // Se inicia la transicion
+            em.getTransaction().begin();
+            // Se inserta el producto
+            em.persist(productoAgregar);
+            // Confirmar y guardar los cambios
+            em.getTransaction().commit();
+            result = 1;
+        }catch(Exception ex){
+            // Revertir todo, no guardar nada
+            em.getTransaction().rollback();
+            System.err.println("Error de sesion de trabajo: " + ex.getMessage());
+            result = 2;
+        }finally{
+            em.close();
+        }
+        return result;
     }
 }
