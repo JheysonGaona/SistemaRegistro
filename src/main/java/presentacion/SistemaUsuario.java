@@ -7,8 +7,11 @@ package presentacion;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 import modelo.Persona;
 import negocio.PersonaServicio;
 
@@ -20,6 +23,8 @@ public class SistemaUsuario extends javax.swing.JFrame {
 
     private PersonaServicio servicio;
     private SimpleDateFormat formato;
+    private DefaultTableModel modelo;
+    private List<Persona> listadoPersonas;
     
     // Crear borde de color rojo y negro para visualizar el formulario
     private final Border bordeRojo = BorderFactory.createLineBorder(Color.RED, 2);
@@ -30,8 +35,24 @@ public class SistemaUsuario extends javax.swing.JFrame {
      */
     public SistemaUsuario() {
         initComponents();
-        servicio = new PersonaServicio();
-        formato = new SimpleDateFormat("dd-MM-yyyy");
+        this.servicio = new PersonaServicio();
+        this.formato = new SimpleDateFormat("dd-MM-yyyy");
+        
+        // Se gestiona la accion de que la tabla no sea editable
+        modelo = new DefaultTableModel(
+            new String[] {"Nombre", "Apellido", "Cédula", "Correo", "Fecha de nacimiento", "Edad"}, 0
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // ninguna celda será editable
+            }
+        };
+
+        // Asignas el modelo a la tabla
+        this.tbListUser.setModel(modelo);
+        
+        // Actualiza la tabla con todos los registros de los usuarios
+        ActualizarTablaRegistro();
     }
 
     /**
@@ -57,6 +78,10 @@ public class SistemaUsuario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListUser = new javax.swing.JTable();
         txtDateUser = new javax.swing.JTextField();
+        btnRegisterUser1 = new javax.swing.JButton();
+        btnRegisterUser2 = new javax.swing.JButton();
+        lblHeaderName1 = new javax.swing.JLabel();
+        btnRegisterUser3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -117,23 +142,76 @@ public class SistemaUsuario extends javax.swing.JFrame {
             }
         });
 
+        tbListUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tbListUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Apellido", "Cédula", "Correo electrónico", "Fecha de nacimiento", "Edad"
             }
         ));
+        tbListUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbListUserMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbListUser);
 
         txtDateUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtDateUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDateUserActionPerformed(evt);
+            }
+        });
+
+        btnRegisterUser1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegisterUser1.setText("Actualizar");
+        btnRegisterUser1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnRegisterUser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterUser1ActionPerformed(evt);
+            }
+        });
+
+        btnRegisterUser2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegisterUser2.setText("Eliminar");
+        btnRegisterUser2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnRegisterUser2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterUser2ActionPerformed(evt);
+            }
+        });
+
+        lblHeaderName1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblHeaderName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeaderName1.setText("LISTA DE USUARIOS REGISTRADOS");
+
+        btnRegisterUser3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegisterUser3.setText("Limpiar");
+        btnRegisterUser3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnRegisterUser3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterUser3ActionPerformed(evt);
             }
         });
 
@@ -144,9 +222,9 @@ public class SistemaUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNumIdUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNumIdUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblHeaderName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -155,26 +233,35 @@ public class SistemaUsuario extends javax.swing.JFrame {
                                 .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtDateUser, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNumIdUser, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnRegisterUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblEmailUser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                        .addComponent(lblEmailUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtEmailUser, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtDateUser)
+                            .addComponent(txtNumIdUser)
+                            .addComponent(btnRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEmailUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEmailUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtEmailUser))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegisterUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegisterUser2, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegisterUser3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHeaderName1, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHeaderName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHeaderName1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblHeaderName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,8 +282,14 @@ public class SistemaUsuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(btnRegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRegisterUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegisterUser3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegisterUser2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,8 +310,6 @@ public class SistemaUsuario extends javax.swing.JFrame {
     private void btnRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUserActionPerformed
         // Si el formulario esta lleno proceder a enviarlo a la capa de negocio
         if(ValidarFormulario()){
-            // String nombre, String apellido, String numIdentificacion,
-            // String correo, Date fechaNacimiento
             String nombre = txtNameUser.getText();
             String apellido = txtLastnameUser.getText();
             String numId = txtNumIdUser.getText();
@@ -235,20 +326,140 @@ public class SistemaUsuario extends javax.swing.JFrame {
                     
             Persona nuevaPersona = new Persona(nombre, apellido, numId,
                 correo, fechaNacimiento);
-            servicio.AgregarNuevaPersona(nuevaPersona);
+            
+            // [0] ya existe la persomna  [1] registro de persona exitoso
+            // [2] Error interno [3] la persona es menor de edad
+            int registro = servicio.AgregarNuevaPersona(nuevaPersona);
+            
+            switch (registro) {
+                case 0:
+                    JOptionPane.showMessageDialog(null, 
+                        "Ya existe la persona con ese número de cédula.", 
+                        "Advertencia", 
+                        JOptionPane.WARNING_MESSAGE);
+                    break;
+                    
+                case 1:
+                    JOptionPane.showMessageDialog(null, 
+                        "Registro exitoso.", 
+                        "Información", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                    // Se procede a actualizar la tabla de registro y limpiar el formulario
+                    ActualizarTablaRegistro();
+                    LimpiarFormulario();
+                    break;
+                    
+                case 2:
+                    JOptionPane.showMessageDialog(null, 
+                        "Error interno, intentelo más tarde.", 
+                        "Error", 
+                        JOptionPane.ERROR_MESSAGE);
+                    break;
+                    
+                case 3:
+                    JOptionPane.showMessageDialog(null, 
+                        "El sistema solo permite registrar a mayores de edad.", 
+                        "Advertencia", 
+                        JOptionPane.QUESTION_MESSAGE);
+                    break;
+            }
         }else{
-            System.out.println("falta un input de llenar");
-            // Mostrar alerta diciendo que llene el formulario
+            JOptionPane.showMessageDialog(null, 
+                "Debe completar todos los campos obligatorios.", 
+                "Advertencia", 
+                JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnRegisterUserActionPerformed
 
     private void txtEmailUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailUserActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtEmailUserActionPerformed
 
     private void txtDateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDateUserActionPerformed
+
+    private void tbListUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListUserMouseClicked
+        llenarFormularioDesdeTabla();
+    }//GEN-LAST:event_tbListUserMouseClicked
+
+    private void btnRegisterUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUser1ActionPerformed
+        
+        // Se obtiene el id seleccionado de la tabla
+        int filaSeleccionada = tbListUser.getSelectedRow();
+            // Se valdia que la fila seleccionada sea superior a cero 
+            if (filaSeleccionada >= 0) {
+            
+            // Si el formulario esta lleno proceder a enviarlo a la capa de negocio
+            if(ValidarFormulario()) {
+                String nombre = txtNameUser.getText();
+                String apellido = txtLastnameUser.getText();
+                String numId = txtNumIdUser.getText();
+                String correo = txtEmailUser.getText();
+
+                // 26-09-1994
+                String fecha = txtDateUser.getText();
+                String[] fechaSeparada = fecha.split("-");
+
+                int dia = Integer.parseInt(fechaSeparada[0]);
+                int mes = Integer.parseInt(fechaSeparada[1]);
+                int anio = Integer.parseInt(fechaSeparada[2]);
+                LocalDate fechaNacimiento = LocalDate.of(anio, mes, dia);
+
+                Persona actualizarPersona = new Persona(nombre, apellido, numId,
+                    correo, fechaNacimiento);
+                
+                int idPersona = listadoPersonas.get(filaSeleccionada).getId();
+                
+                boolean actualizado = servicio.ActualizarPersona(idPersona, actualizarPersona);
+                
+                if(actualizado){
+                    JOptionPane.showMessageDialog(null, 
+                        "Registro actualizado.", 
+                        "Información", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                    ActualizarTablaRegistro();
+                }else{
+                    JOptionPane.showMessageDialog(null, 
+                        "No se pudo actualizar el registro.", 
+                        "Advertencia", 
+                        JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnRegisterUser1ActionPerformed
+
+    private void btnRegisterUser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUser2ActionPerformed
+        // Se obtiene el id seleccionado de la tabla
+        int filaSeleccionada = tbListUser.getSelectedRow();
+        
+        // Se valdia que la fila seleccionada sea superior a cero 
+        if (filaSeleccionada >= 0) {
+            // Confirmar antes de eliminar
+            int confirmacion = JOptionPane.showConfirmDialog(null,
+                    "¿Estás seguro de eliminar esta persona?",
+                    "Confirmar eliminación",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                int idPersona = listadoPersonas.get(filaSeleccionada).getId();
+                System.out.println("El id" + idPersona);
+                
+                boolean eliminado = servicio.EliminarPersonaPorId(idPersona);
+
+                if (eliminado) {
+                    JOptionPane.showMessageDialog(null, "Persona eliminada correctamente.");
+                    ActualizarTablaRegistro();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar la persona.");
+                }
+            }
+        }
+    }//GEN-LAST:event_btnRegisterUser2ActionPerformed
+
+    private void btnRegisterUser3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUser3ActionPerformed
+        LimpiarFormulario();
+    }//GEN-LAST:event_btnRegisterUser3ActionPerformed
 
     
     private boolean ValidarFormulario(){
@@ -257,9 +468,65 @@ public class SistemaUsuario extends javax.swing.JFrame {
         txtLastnameUser.setBorder(txtLastnameUser.getText().isEmpty() ? bordeRojo: bordeNegro);
         txtNumIdUser.setBorder(txtNumIdUser.getText().isEmpty() ? bordeRojo: bordeNegro);
         txtEmailUser.setBorder(txtEmailUser.getText().isEmpty() ? bordeRojo: bordeNegro);
+        txtDateUser.setBorder(txtDateUser.getText().isEmpty() ? bordeRojo: bordeNegro);
         
         return !(txtNameUser.getText().isEmpty() || txtLastnameUser.getText().isEmpty()
-            || txtNumIdUser.getText().isEmpty() || txtEmailUser.getText().isEmpty());
+            || txtNumIdUser.getText().isEmpty() || txtEmailUser.getText().isEmpty()
+            || txtDateUser.getText().isEmpty());
+    }
+    
+    
+    
+    private void ActualizarTablaRegistro(){
+        // Limpia la tabla antes de llenarla
+        modelo.setRowCount(0);
+
+        listadoPersonas = servicio.ListarPersonas();
+        // Ciclo repetitivo mejorado
+        for (Persona personaActual : listadoPersonas) {
+            Object[] fila = new Object[] {
+                personaActual.getNombre(),
+                personaActual.getApellido(),
+                personaActual.getNumIdentificacion(),
+                personaActual.getCorreo(),
+                personaActual.getFechaNacimiento().toString(),
+                personaActual.getEdad()
+            };
+            modelo.addRow(fila);
+        }
+    }
+    
+    
+    
+    private void llenarFormularioDesdeTabla() {
+    int filaSeleccionada = tbListUser.getSelectedRow();
+
+    if (filaSeleccionada >= 0) {
+        // Obtiene los valores de cada columna según el índice
+        String nombre = tbListUser.getValueAt(filaSeleccionada, 0).toString();
+        String apellido = tbListUser.getValueAt(filaSeleccionada, 1).toString();
+        String cedula = tbListUser.getValueAt(filaSeleccionada, 2).toString();
+        String correo = tbListUser.getValueAt(filaSeleccionada, 3).toString();
+        String fechaNacimiento = tbListUser.getValueAt(filaSeleccionada, 4).toString();
+
+        // Asigna a tus campos de formulario
+        txtNameUser.setText(nombre);
+        txtLastnameUser.setText(apellido);
+        txtNumIdUser.setText(cedula);
+        txtEmailUser.setText(correo);
+        txtDateUser.setText(fechaNacimiento); // puede ser un campo tipo JDateChooser o JTextField
+    }
+}
+
+    
+    
+    // Se emplea este metodo para poder limpiar el formulario
+    private void LimpiarFormulario(){
+        txtNameUser.setText("");
+        txtLastnameUser.setText("");
+        txtNumIdUser.setText("");
+        txtEmailUser.setText("");
+        txtDateUser.setText("");
     }
     
     /**
@@ -302,10 +569,14 @@ public class SistemaUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegisterUser;
+    private javax.swing.JButton btnRegisterUser1;
+    private javax.swing.JButton btnRegisterUser2;
+    private javax.swing.JButton btnRegisterUser3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEmailUser;
     private javax.swing.JLabel lblEmailUser1;
     private javax.swing.JLabel lblHeaderName;
+    private javax.swing.JLabel lblHeaderName1;
     private javax.swing.JLabel lblLastnameUser;
     private javax.swing.JLabel lblNameUser;
     private javax.swing.JLabel lblNumIdUser;

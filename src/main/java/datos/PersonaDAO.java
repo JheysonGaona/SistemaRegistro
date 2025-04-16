@@ -4,6 +4,7 @@
  */
 package datos;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import modelo.Persona;
@@ -75,9 +76,10 @@ public class PersonaDAO {
     
     
     // [0] ya existe la persomna  [1] no existe la persona, registro exitoso
-    // [2] Huno un error inesperado
+    // [2] Hubo un error inesperado
     public int VerificarAgregarPersona(Persona personaAgregar){
         int result = 0;
+        
          // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
         try {
@@ -86,11 +88,12 @@ public class PersonaDAO {
             .setParameter("numId", personaAgregar.getNumIdentificacion())
             .getSingleResult();
             
+            // Se valida si la persona ya existe
             if(personaExiste != null){
                 System.out.println("YA EXISTE LA PERSONA");
-                em.close();
                 return result;
             }
+            
         } catch(NoResultException ex){
             // Se inicia la transicion
             em.getTransaction().begin();
@@ -108,5 +111,104 @@ public class PersonaDAO {
             em.close();
         }
         return result;
+    }
+
+
+    // [0] ya existe la persona  [1] registro de persona exitoso
+    // [2] Error interno
+    public int RegistrarPersona(Persona personaAgregar){
+        // Inicia la sesion de trabajo con la base de datos
+        EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            Long count = em.createQuery(
+                "SELECT COUNT(p) FROM Persona p WHERE p.numIdentificacion = :numId", Long.class)
+            .setParameter("numId", personaAgregar.getNumIdentificacion())
+            .getSingleResult();
+            
+            // Existe la persona, porque el contador dio un resultado
+            if(count > 0){
+                return 0;
+            }
+            
+            // Se inicia la transicion
+            em.getTransaction().begin();
+            // Se inserta la persona
+            em.persist(personaAgregar);
+            // Confirmar y guardar los cambios
+            em.getTransaction().commit();
+            return 1;
+        }catch(Exception ex){
+            // Revertir todo, no guardar nada
+            if(em.getTransaction().isActive()){
+               em.getTransaction().rollback(); 
+            }
+            return 2;
+            
+        }finally{
+            em.close();
+        }
+    }
+    
+    
+    // Metodo que permite actulizar la persona
+    public boolean ActualizarPersona(int id, Persona personaActualizar) {
+        EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            Persona existente = em.find(Persona.class, id);
+            if (existente == null) return false;
+
+            em.getTransaction().begin();
+            existente.setNombre(personaActualizar.getNombre());
+            existente.setApellido(personaActualizar.getApellido());
+            existente.setNumIdentificacion(personaActualizar.getNumIdentificacion());
+            existente.setCorreo(personaActualizar.getCorreo());
+            existente.setFechaNacimiento(personaActualizar.getFechaNacimiento());
+            
+            // em.merge(personaActualizar);
+            em.getTransaction().commit();
+            return true;
+
+        } catch (Exception ex) {
+            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
+        }
+    }
+    
+    
+    // Eliminar persona
+    // Si retorna true se elimino el registro, false no se pudo eliminar
+    public boolean EliminarPersona(int numId) {
+        EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            Persona persona = em.find(Persona.class, numId);
+            
+            if (persona == null) {
+                return false;
+            }
+
+            em.getTransaction().begin();
+            em.remove(persona);
+            em.getTransaction().commit();
+            return true;
+
+        } catch (Exception ex) {
+            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            return false;
+        } finally {
+            em.close();
+        }
+    }
+    
+    
+    // Devuelve en una lista todas las personas
+    public List<Persona> ListarPersonasRegistradas() {
+        EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            return em.createQuery("SELECT p FROM Persona p", Persona.class).getResultList();
+        } finally {
+            em.close();
+        }
     }
 }

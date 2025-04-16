@@ -5,11 +5,12 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.Period;
 import javax.persistence.*;
 
 /**
  *
- * @author Jhyeson Gaona
+ * @author Jhyeson Gaona Pineda
  */
 
 @Entity
@@ -129,5 +130,10 @@ public class Persona {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+    
+    public void CalcularEdad () {
+        Period periodo = Period.between(this.fechaNacimiento, LocalDate.now());
+        this.edad = periodo.getYears();
     }
 }
