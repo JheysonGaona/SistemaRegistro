@@ -6,11 +6,13 @@
 //
 //import javax.persistence.*;
 //import java.util.List;
+//import modelo.Persona;
 //
 ///**
 // *
 // * @author Jheyson Gaona
 // */
+//
 //@Entity
 //@Table(name = "factura")
 //public class Factura {
@@ -20,7 +22,7 @@
 //    private int id;
 //    
 //    @ManyToOne
-//    @JoinColumn(name = "id")
+//    @JoinColumn(name = "persona_id")
 //    private Persona persona;
 //    
 //    

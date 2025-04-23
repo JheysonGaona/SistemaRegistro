@@ -5,8 +5,8 @@
 package presentacion;
 
 import java.awt.Color;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -22,8 +22,7 @@ import negocio.PersonaServicio;
 public class SistemaUsuario extends javax.swing.JFrame {
 
     private PersonaServicio servicio;
-    private SimpleDateFormat formato;
-    private DefaultTableModel modelo;
+    private final DefaultTableModel modelo;
     private List<Persona> listadoPersonas;
     
     // Crear borde de color rojo y negro para visualizar el formulario
@@ -36,23 +35,26 @@ public class SistemaUsuario extends javax.swing.JFrame {
     public SistemaUsuario() {
         initComponents();
         this.servicio = new PersonaServicio();
-        this.formato = new SimpleDateFormat("dd-MM-yyyy");
         
         // Se gestiona la accion de que la tabla no sea editable
-        modelo = new DefaultTableModel(
-            new String[] {"Nombre", "Apellido", "Cédula", "Correo", "Fecha de nacimiento", "Edad"}, 0
+        this.modelo = new DefaultTableModel(
+            new String[] {"Nombre", "Apellido", "Cédula", "Correo electrónico",
+                "Fecha de nacimiento", "Edad"}, 0
         ) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // ninguna celda será editable
+                // ninguna celda será editable
+                return false;
             }
         };
 
         // Asignas el modelo a la tabla
         this.tbListUser.setModel(modelo);
         
-        // Actualiza la tabla con todos los registros de los usuarios
+        // Actualiza la tabla con todos los registros de los usuarios y
+        // Se limpia el formulario para setear los botones
         ActualizarTablaRegistro();
+        LimpiarFormulario();
     }
 
     /**
@@ -78,10 +80,10 @@ public class SistemaUsuario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListUser = new javax.swing.JTable();
         txtDateUser = new javax.swing.JTextField();
-        btnRegisterUser1 = new javax.swing.JButton();
-        btnRegisterUser2 = new javax.swing.JButton();
+        btnUpdateUser = new javax.swing.JButton();
+        btnDeleteUser = new javax.swing.JButton();
         lblHeaderName1 = new javax.swing.JLabel();
-        btnRegisterUser3 = new javax.swing.JButton();
+        btnClearUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -114,9 +116,9 @@ public class SistemaUsuario extends javax.swing.JFrame {
         lblNumIdUser.setText("Número de cédula");
 
         txtNumIdUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtNumIdUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumIdUserActionPerformed(evt);
+        txtNumIdUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumIdUserKeyTyped(evt);
             }
         });
 
@@ -178,27 +180,27 @@ public class SistemaUsuario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbListUser);
 
         txtDateUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtDateUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDateUserActionPerformed(evt);
+        txtDateUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDateUserKeyPressed(evt);
             }
         });
 
-        btnRegisterUser1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRegisterUser1.setText("Actualizar");
-        btnRegisterUser1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnRegisterUser1.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnUpdateUser.setText("Actualizar");
+        btnUpdateUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnUpdateUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterUser1ActionPerformed(evt);
+                btnUpdateUserActionPerformed(evt);
             }
         });
 
-        btnRegisterUser2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRegisterUser2.setText("Eliminar");
-        btnRegisterUser2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnRegisterUser2.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDeleteUser.setText("Eliminar");
+        btnDeleteUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnDeleteUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterUser2ActionPerformed(evt);
+                btnDeleteUserActionPerformed(evt);
             }
         });
 
@@ -206,12 +208,12 @@ public class SistemaUsuario extends javax.swing.JFrame {
         lblHeaderName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeaderName1.setText("LISTA DE USUARIOS REGISTRADOS");
 
-        btnRegisterUser3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRegisterUser3.setText("Limpiar");
-        btnRegisterUser3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnRegisterUser3.addActionListener(new java.awt.event.ActionListener() {
+        btnClearUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnClearUser.setText("Limpiar");
+        btnClearUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnClearUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterUser3ActionPerformed(evt);
+                btnClearUserActionPerformed(evt);
             }
         });
 
@@ -224,6 +226,12 @@ public class SistemaUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNumIdUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnClearUser, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblHeaderName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
@@ -234,19 +242,15 @@ public class SistemaUsuario extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtDateUser)
                             .addComponent(txtNumIdUser)
                             .addComponent(btnRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblEmailUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblEmailUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtEmailUser))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnRegisterUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRegisterUser2, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRegisterUser3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtDateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,19 +289,15 @@ public class SistemaUsuario extends javax.swing.JFrame {
                         .addComponent(btnRegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnRegisterUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegisterUser3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegisterUser2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnClearUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNumIdUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumIdUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumIdUserActionPerformed
 
     private void txtNameUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameUserActionPerformed
         // TODO add your handling code here:
@@ -308,130 +308,130 @@ public class SistemaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLastnameUserActionPerformed
 
     private void btnRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUserActionPerformed
-        // Si el formulario esta lleno proceder a enviarlo a la capa de negocio
-        if(ValidarFormulario()){
-            String nombre = txtNameUser.getText();
-            String apellido = txtLastnameUser.getText();
-            String numId = txtNumIdUser.getText();
-            String correo = txtEmailUser.getText();
-            
-            // 26-09-1994
-            String fecha = txtDateUser.getText();
-            String[] fechaSeparada = fecha.split("-");
-            
-            int dia = Integer.parseInt(fechaSeparada[0]);
-            int mes = Integer.parseInt(fechaSeparada[1]);
-            int anio = Integer.parseInt(fechaSeparada[2]);
-            LocalDate fechaNacimiento = LocalDate.of(anio, mes, dia);
-                    
-            Persona nuevaPersona = new Persona(nombre, apellido, numId,
-                correo, fechaNacimiento);
-            
-            // [0] ya existe la persomna  [1] registro de persona exitoso
-            // [2] Error interno [3] la persona es menor de edad
-            int registro = servicio.AgregarNuevaPersona(nuevaPersona);
-            
-            switch (registro) {
-                case 0:
-                    JOptionPane.showMessageDialog(null, 
-                        "Ya existe la persona con ese número de cédula.", 
-                        "Advertencia", 
-                        JOptionPane.WARNING_MESSAGE);
-                    break;
-                    
-                case 1:
-                    JOptionPane.showMessageDialog(null, 
-                        "Registro exitoso.", 
-                        "Información", 
-                        JOptionPane.INFORMATION_MESSAGE);
-                    // Se procede a actualizar la tabla de registro y limpiar el formulario
-                    ActualizarTablaRegistro();
-                    LimpiarFormulario();
-                    break;
-                    
-                case 2:
-                    JOptionPane.showMessageDialog(null, 
-                        "Error interno, intentelo más tarde.", 
-                        "Error", 
-                        JOptionPane.ERROR_MESSAGE);
-                    break;
-                    
-                case 3:
-                    JOptionPane.showMessageDialog(null, 
-                        "El sistema solo permite registrar a mayores de edad.", 
-                        "Advertencia", 
-                        JOptionPane.QUESTION_MESSAGE);
-                    break;
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, 
-                "Debe completar todos los campos obligatorios.", 
-                "Advertencia", 
-                JOptionPane.INFORMATION_MESSAGE);
-        }
+        RegistrarNuevaPersona();
     }//GEN-LAST:event_btnRegisterUserActionPerformed
 
     private void txtEmailUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailUserActionPerformed
         
     }//GEN-LAST:event_txtEmailUserActionPerformed
 
-    private void txtDateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateUserActionPerformed
-
     private void tbListUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListUserMouseClicked
-        llenarFormularioDesdeTabla();
+        LlenarFormularioDesdeTabla();
     }//GEN-LAST:event_tbListUserMouseClicked
 
-    private void btnRegisterUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUser1ActionPerformed
+    private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
+        ActualizarDatosPersona();
+    }//GEN-LAST:event_btnUpdateUserActionPerformed
+
+    private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
+        EliminarRegistroPersona();
+    }//GEN-LAST:event_btnDeleteUserActionPerformed
+
+    private void btnClearUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearUserActionPerformed
+        LimpiarFormulario();
+    }//GEN-LAST:event_btnClearUserActionPerformed
+
+    private void txtDateUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDateUserKeyPressed
+        String texto = this.txtDateUser.getText().replaceAll("[^\\d]", "");
+        StringBuilder formateado = new StringBuilder();
         
-        // Se obtiene el id seleccionado de la tabla
-        int filaSeleccionada = tbListUser.getSelectedRow();
-            // Se valdia que la fila seleccionada sea superior a cero 
-            if (filaSeleccionada >= 0) {
-            
-            // Si el formulario esta lleno proceder a enviarlo a la capa de negocio
-            if(ValidarFormulario()) {
-                String nombre = txtNameUser.getText();
-                String apellido = txtLastnameUser.getText();
-                String numId = txtNumIdUser.getText();
-                String correo = txtEmailUser.getText();
+        int len = texto.length();
 
-                // 26-09-1994
-                String fecha = txtDateUser.getText();
-                String[] fechaSeparada = fecha.split("-");
+        for (int i = 0; i < texto.length() && i < 8; i++) {
+            formateado.append(texto.charAt(i));
+            if ((i == 1 || i == 3)) {
+                formateado.append("-");
+            }
+        }
 
-                int dia = Integer.parseInt(fechaSeparada[0]);
-                int mes = Integer.parseInt(fechaSeparada[1]);
-                int anio = Integer.parseInt(fechaSeparada[2]);
-                LocalDate fechaNacimiento = LocalDate.of(anio, mes, dia);
+        this.txtDateUser.setText(formateado.toString());
+    }//GEN-LAST:event_txtDateUserKeyPressed
 
-                Persona actualizarPersona = new Persona(nombre, apellido, numId,
-                    correo, fechaNacimiento);
-                
-                int idPersona = listadoPersonas.get(filaSeleccionada).getId();
-                
-                boolean actualizado = servicio.ActualizarPersona(idPersona, actualizarPersona);
-                
-                if(actualizado){
-                    JOptionPane.showMessageDialog(null, 
-                        "Registro actualizado.", 
-                        "Información", 
-                        JOptionPane.INFORMATION_MESSAGE);
+    private void txtNumIdUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumIdUserKeyTyped
+        char c = evt.getKeyChar();
+        // Si es un caracter se consume solo acepta de 0-9
+        if(!Character.isDigit(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNumIdUserKeyTyped
+
+    
+    // Se emplea este metodo para poder registrar una nueva persona en la DB
+    private void RegistrarNuevaPersona() {
+        // Si el formulario esta lleno proceder a enviarlo a la capa de negocio
+        if(ValidarFormulario()){           
+            Persona nuevaPersona = GenerarDatosPersona();
+            // Se valida si la persona no sea nula, si es asi acaba el metodo
+            if(nuevaPersona == null) return;
+            // [0] ya existe la persomna  [1] registro de persona exitoso
+            // [2] Error interno [3] la persona es menor de edad
+            int registro = servicio.AgregarNuevaPersona(nuevaPersona);
+            switch (registro) {
+                case 0:
+                    MostrarMensajePanel("Ya existe la persona con ese número de cédula.",
+                            "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    break;
+                    
+                case 1:
+                    MostrarMensajePanel("Registro exitoso.",
+                            "Información", JOptionPane.INFORMATION_MESSAGE);
+                    // Se actualiza la tabla de registro y limpiar el formulario
                     ActualizarTablaRegistro();
-                }else{
-                    JOptionPane.showMessageDialog(null, 
-                        "No se pudo actualizar el registro.", 
-                        "Advertencia", 
-                        JOptionPane.WARNING_MESSAGE);
+                    LimpiarFormulario();
+                    break;
+                    
+                case 2:
+                    MostrarMensajePanel("Error interno, intentelo más tarde.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                    
+                case 3:
+                    MostrarMensajePanel("El sistema solo permite registrar a mayores de edad.",
+                            "Advertencia", JOptionPane.QUESTION_MESSAGE);
+                    break;
+            }
+        }else{
+            MostrarMensajePanel("Debe completar todos los campos obligatorios.",
+                    "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    
+    // Se emplea este metodo para poder actualizar la persona en la DB
+    private void ActualizarDatosPersona(){
+        // Se obtiene el id seleccionado de la tabla
+        int filaSeleccionada = this.tbListUser.getSelectedRow();
+            // Se valdia que la fila seleccionada sea superior a cero
+            
+            if (filaSeleccionada >= 0) {
+                // Si el formulario esta lleno proceder a enviarlo a la capa de negocio
+                if(ValidarFormulario()) {
+                    Persona actualizarPersona = GenerarDatosPersona();
+                    // Se valida si la persona no sea nula, si es asi acaba el metodo
+                    if(actualizarPersona == null) return;
+                    // Se obtiene el id de la persona
+                    int idPersona = this.listadoPersonas.get(filaSeleccionada).getId();
+                    boolean actualizado = this.servicio.ActualizarPersona(idPersona, actualizarPersona);
+                
+                    // Se verifica si la persona se a actualizado correctamente
+                    if(actualizado){
+                        MostrarMensajePanel("Registro actualizado.",
+                                "Información", JOptionPane.INFORMATION_MESSAGE);
+                        ActualizarTablaRegistro();
+                        LimpiarFormulario();
+                    }else{
+                        MostrarMensajePanel("No se pudo actualizar el registro.",
+                            "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }
-    }//GEN-LAST:event_btnRegisterUser1ActionPerformed
-
-    private void btnRegisterUser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUser2ActionPerformed
+    }
+    
+    
+    // Se emplea este metodo para poder eliminar la persona en la DB
+    private void EliminarRegistroPersona(){
         // Se obtiene el id seleccionado de la tabla
-        int filaSeleccionada = tbListUser.getSelectedRow();
+        int filaSeleccionada = this.tbListUser.getSelectedRow();
         
         // Se valdia que la fila seleccionada sea superior a cero 
         if (filaSeleccionada >= 0) {
@@ -441,49 +441,83 @@ public class SistemaUsuario extends javax.swing.JFrame {
                     "Confirmar eliminación",
                     JOptionPane.YES_NO_OPTION);
 
+            // La confirmación ha sido exitosa
             if (confirmacion == JOptionPane.YES_OPTION) {
-                int idPersona = listadoPersonas.get(filaSeleccionada).getId();
-                System.out.println("El id" + idPersona);
-                
-                boolean eliminado = servicio.EliminarPersonaPorId(idPersona);
-
+                int idPersona = this.listadoPersonas.get(filaSeleccionada).getId();
+                boolean eliminado = this.servicio.EliminarPersonaPorId(idPersona);
+                // Se ha elimando correctamente en la DB
                 if (eliminado) {
-                    JOptionPane.showMessageDialog(null, "Persona eliminada correctamente.");
+                    MostrarMensajePanel("Persona eliminada correctamente.",
+                            "", JOptionPane.INFORMATION_MESSAGE);
                     ActualizarTablaRegistro();
+                    LimpiarFormulario();
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo eliminar la persona.");
+                    MostrarMensajePanel("No se pudo eliminar la persona.",
+                            "", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }
-    }//GEN-LAST:event_btnRegisterUser2ActionPerformed
-
-    private void btnRegisterUser3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUser3ActionPerformed
-        LimpiarFormulario();
-    }//GEN-LAST:event_btnRegisterUser3ActionPerformed
-
-    
-    private boolean ValidarFormulario(){
-        // Pintar los bordes de cada caja de texto usando operador ternario
-        txtNameUser.setBorder(txtNameUser.getText().isEmpty() ? bordeRojo: bordeNegro);
-        txtLastnameUser.setBorder(txtLastnameUser.getText().isEmpty() ? bordeRojo: bordeNegro);
-        txtNumIdUser.setBorder(txtNumIdUser.getText().isEmpty() ? bordeRojo: bordeNegro);
-        txtEmailUser.setBorder(txtEmailUser.getText().isEmpty() ? bordeRojo: bordeNegro);
-        txtDateUser.setBorder(txtDateUser.getText().isEmpty() ? bordeRojo: bordeNegro);
-        
-        return !(txtNameUser.getText().isEmpty() || txtLastnameUser.getText().isEmpty()
-            || txtNumIdUser.getText().isEmpty() || txtEmailUser.getText().isEmpty()
-            || txtDateUser.getText().isEmpty());
     }
     
     
+    // Se emplea este metodo para poder generar los datos de la persona
+    // tanto para cuando se crea como para cuando se actualiza
+    private Persona GenerarDatosPersona(){
+        Persona nuevaPersona = null;
+        String nombre = this.txtNameUser.getText();
+        String apellido = this.txtLastnameUser.getText();
+        String numId = this.txtNumIdUser.getText();
+        String correo = this.txtEmailUser.getText();
+        String fechaNac = this.txtDateUser.getText();
+        // Se genera un bloque try para que la fecha sea correcta
+        try {
+            String[] fechaSeparada = fechaNac.split("-");
+            int dia = Integer.parseInt(fechaSeparada[0]);
+            int mes = Integer.parseInt(fechaSeparada[1]);
+            int anio = Integer.parseInt(fechaSeparada[2]);
+            LocalDate fechaNacimiento = LocalDate.of(anio, mes, dia);
+
+            nuevaPersona = new Persona(nombre, apellido, numId,
+                correo, fechaNacimiento);
+        }catch(DateTimeParseException ex){
+            MostrarMensajePanel(ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return nuevaPersona;
+    }
     
+    
+    // Se emplea este metodo para poder generar los msm dentro de los paneles
+    private void MostrarMensajePanel(String msm, String cabezera,  int tipoPanel) {
+        JOptionPane.showMessageDialog(null, msm, cabezera, tipoPanel);
+    }
+    
+    
+    // Metodo que permite validar si el formulario se encuentra con registros
+    private boolean ValidarFormulario(){
+        // Pintar los bordes de cada caja de texto usando operador ternario
+        this.txtNameUser.setBorder(this.txtNameUser.getText().isEmpty() ? this.bordeRojo: this.bordeNegro);
+        this.txtLastnameUser.setBorder(this.txtLastnameUser.getText().isEmpty() ? this.bordeRojo: this.bordeNegro);
+        this.txtNumIdUser.setBorder(this.txtNumIdUser.getText().isEmpty() ? this.bordeRojo: this.bordeNegro);
+        this.txtEmailUser.setBorder(this.txtEmailUser.getText().isEmpty() ? this.bordeRojo: this.bordeNegro);
+        this.txtDateUser.setBorder(this.txtDateUser.getText().isEmpty() ? this.bordeRojo: this.bordeNegro);
+        
+        // Devuelve verdad si esta completamente lleno, o falso si algo falta llenar
+        return !(this.txtNameUser.getText().isEmpty() || this.txtLastnameUser.getText().isEmpty()
+            || this.txtNumIdUser.getText().isEmpty() || this.txtEmailUser.getText().isEmpty()
+            || this.txtDateUser.getText().isEmpty());
+    }
+    
+    
+    // Metodo que se emplea para poder actualizar los registros de la tabla
     private void ActualizarTablaRegistro(){
         // Limpia la tabla antes de llenarla
-        modelo.setRowCount(0);
+        this.modelo.setRowCount(0);
 
-        listadoPersonas = servicio.ListarPersonas();
-        // Ciclo repetitivo mejorado
-        for (Persona personaActual : listadoPersonas) {
+        this.listadoPersonas = this.servicio.ListarPersonas();
+        // Ciclo repetitivo mejorado para llenar la tabla con registros
+        for (Persona personaActual : this.listadoPersonas) {
             Object[] fila = new Object[] {
                 personaActual.getNombre(),
                 personaActual.getApellido(),
@@ -492,41 +526,51 @@ public class SistemaUsuario extends javax.swing.JFrame {
                 personaActual.getFechaNacimiento().toString(),
                 personaActual.getEdad()
             };
-            modelo.addRow(fila);
+            this.modelo.addRow(fila);
         }
     }
     
     
-    
-    private void llenarFormularioDesdeTabla() {
-    int filaSeleccionada = tbListUser.getSelectedRow();
+    // Metodo que se emplea para poder llenar el formulario luego de selecionar
+    // una columna de la tabla
+    private void LlenarFormularioDesdeTabla() {
+        int filaSeleccionada = this.tbListUser.getSelectedRow();
 
-    if (filaSeleccionada >= 0) {
-        // Obtiene los valores de cada columna según el índice
-        String nombre = tbListUser.getValueAt(filaSeleccionada, 0).toString();
-        String apellido = tbListUser.getValueAt(filaSeleccionada, 1).toString();
-        String cedula = tbListUser.getValueAt(filaSeleccionada, 2).toString();
-        String correo = tbListUser.getValueAt(filaSeleccionada, 3).toString();
-        String fechaNacimiento = tbListUser.getValueAt(filaSeleccionada, 4).toString();
+        // Se valida si se ha selecionado una fila positiva
+        if (filaSeleccionada >= 0) {
+            this.btnDeleteUser.setEnabled(true);
+            this.btnUpdateUser.setEnabled(true);
+            this.btnRegisterUser.setEnabled(false);
 
-        // Asigna a tus campos de formulario
-        txtNameUser.setText(nombre);
-        txtLastnameUser.setText(apellido);
-        txtNumIdUser.setText(cedula);
-        txtEmailUser.setText(correo);
-        txtDateUser.setText(fechaNacimiento); // puede ser un campo tipo JDateChooser o JTextField
+            // Obtiene los valores de cada columna según el índice
+            String nombre = this.tbListUser.getValueAt(filaSeleccionada, 0).toString();
+            String apellido = this.tbListUser.getValueAt(filaSeleccionada, 1).toString();
+            String cedula = this.tbListUser.getValueAt(filaSeleccionada, 2).toString();
+            String correo = this.tbListUser.getValueAt(filaSeleccionada, 3).toString();
+            String fechaNacimiento = this.tbListUser.getValueAt(filaSeleccionada, 4).toString();
+
+            // Asigna a tus campos de formulario
+            this.txtNameUser.setText(nombre);
+            this.txtLastnameUser.setText(apellido);
+            this.txtNumIdUser.setText(cedula);
+            this.txtEmailUser.setText(correo);
+            this.txtDateUser.setText(fechaNacimiento);
+        }
     }
-}
 
-    
     
     // Se emplea este metodo para poder limpiar el formulario
     private void LimpiarFormulario(){
-        txtNameUser.setText("");
-        txtLastnameUser.setText("");
-        txtNumIdUser.setText("");
-        txtEmailUser.setText("");
-        txtDateUser.setText("");
+        this.txtNameUser.setText("");
+        this.txtLastnameUser.setText("");
+        this.txtNumIdUser.setText("");
+        this.txtEmailUser.setText("");
+        this.txtDateUser.setText("");
+        
+        this.tbListUser.clearSelection();
+        this.btnRegisterUser.setEnabled(true);
+        this.btnDeleteUser.setEnabled(false);
+        this.btnUpdateUser.setEnabled(false);
     }
     
     /**
@@ -568,10 +612,10 @@ public class SistemaUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClearUser;
+    private javax.swing.JButton btnDeleteUser;
     private javax.swing.JButton btnRegisterUser;
-    private javax.swing.JButton btnRegisterUser1;
-    private javax.swing.JButton btnRegisterUser2;
-    private javax.swing.JButton btnRegisterUser3;
+    private javax.swing.JButton btnUpdateUser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEmailUser;
     private javax.swing.JLabel lblEmailUser1;

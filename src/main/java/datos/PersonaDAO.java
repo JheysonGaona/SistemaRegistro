@@ -24,35 +24,6 @@ public class PersonaDAO {
     }
     
     
-    /*
-    public void AgregarPersona(Persona persona) throws SQLException{
-        String sql = "INSERT INTO usuario (nombre, correo) VALUES (?, ?)";
-        Connection conn = ConexionDB.AbrirConexion();
-        try (PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){
-            stmt.setString(1, persona.getNombre());
-            stmt.setString(2, persona.getCorreo());
-            
-            int fliasAfectadas = stmt.executeUpdate();
-            if(fliasAfectadas > 0){
-                try(ResultSet generateKeys = stmt.getGeneratedKeys()) {
-                    if(generateKeys.next()){
-                        int idGenerado = generateKeys.getInt(1);
-                        System.out.println("Registro Exitoso con ID: " + idGenerado);
-                    }else{
-                        System.out.println("No se generó ningún ID.");
-                    }
-                }
-            }else{
-                System.out.println("No se pudo insertar el registro");
-            }
-        }catch(SQLException ex){
-            System.out.println("Error al agregar persona: " + ex.getMessage());
-        } finally {
-            ConexionDB.CerrarConexion(conn);
-        }
-    }
-¨   */
-    
     public void AgregarPersona(Persona personaAgregar){
         // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();

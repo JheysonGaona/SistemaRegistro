@@ -26,11 +26,11 @@
 //    private float precioUnitario;
 //
 //    @ManyToOne
-//    @JoinColumn(name = "id")
+//    @JoinColumn(name = "producto_id")
 //    private Producto producto;
 //
 //    @ManyToOne
-//    @JoinColumn(name = "id")
+//    @JoinColumn(name = "factura_id")
 //    private Factura factura;
 //
 //    
