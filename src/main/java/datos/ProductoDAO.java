@@ -6,6 +6,7 @@ package datos;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import modelo.Producto;
 import util.PersistenceUtil;
 
@@ -104,6 +105,20 @@ public class ProductoDAO {
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
         try {
             return em.createQuery("SELECT p FROM Producto p", Producto.class).getResultList();
+        } finally {
+            em.close();
+        }
+    }
+    
+    
+    public Producto BuscarProductoPorCodigo(String codigo){
+        EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            return em.createQuery("SELECT p FROM Producto p WHERE p.codigo = :cod", Producto.class)
+                    .setParameter("cod", codigo)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
         } finally {
             em.close();
         }

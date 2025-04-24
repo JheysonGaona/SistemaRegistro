@@ -3,8 +3,8 @@
   <persistence-unit name="SistemaRegistroUsuario" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <class>modelo.Persona</class>
-    <!--<class>modelo.DetalleFactura</class>-->
-    <!--<class>modelo.Factura</class>-->
+    <class>modelo.DetalleFactura</class>
+    <class>modelo.Factura</class>
     <class>modelo.Producto</class>
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/persona_database?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

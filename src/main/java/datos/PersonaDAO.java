@@ -182,4 +182,18 @@ public class PersonaDAO {
             em.close();
         }
     }
+    
+    
+    public Persona BuscarPersonaPorCedula(String cedula){
+        EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
+        try {
+            return em.createQuery("SELECT p FROM Persona p WHERE p.numIdentificacion = :cedula", Persona.class)
+                    .setParameter("cedula", cedula)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 }
