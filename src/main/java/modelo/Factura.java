@@ -49,6 +49,7 @@ public class Factura {
         this.detalles = detalles;
     }
 
+    
     public int getId() {
         return id;
     }

@@ -18,23 +18,27 @@ import negocio.FacturaServicio;
  */
 public class SistemaFactura extends javax.swing.JFrame {
     
-    private Persona personaSeleccionada;
-    private FacturaServicio servicio;
     private List<DetalleFactura> detallesFactura = new ArrayList();
-
+    
+    private Persona personaEncontrada;
+    
+    private final FacturaServicio servicio;
+    
+    private Producto productoEncontrado;
+    
     /**
      * Creates new form SistemaFactura
      */
     public SistemaFactura() {
+        servicio = new FacturaServicio();
         initComponents();
-        this.servicio = new FacturaServicio();
-        Factura factura = this.servicio.obtenerFacturaCompletaPorId(1);
-        System.out.println(factura.getPersona().getNombre());
-//        List<DetalleFactura> detallesFacturaParaEsteCaso = new ArrayList();
-//        detallesFacturaParaEsteCaso = factura.getDetalles();
         
-        for(DetalleFactura detalle: factura.getDetalles()){
-            System.out.println(detalle.getProducto().getNombre());
+        Factura miFactura = servicio.ObtenerFacturaCompleta(5);
+        
+        System.out.println("Cliente factura: " + miFactura.getPersona().getNombre());
+        for(DetalleFactura detalle: miFactura.getDetalles()){
+            System.out.println("Producto: " + detalle.getProducto().getNombre()
+             + " - " + detalle.getProducto().getPrecio() + ", "+ detalle.getCantidad());
         }
     }
 
@@ -281,9 +285,9 @@ public class SistemaFactura extends javax.swing.JFrame {
     
     private void BuscarPersona() {
         String cedula = this.txtNumIdenUser.getText();
-        this.personaSeleccionada = this.servicio.BuscarPersonaPorCedula(cedula);
-        if(this.personaSeleccionada != null){
-            System.out.println("La persona es: " + this.personaSeleccionada.getNombre());
+        this.personaEncontrada = this.servicio.BuscarPersonaPorCedula(cedula);
+        if(this.personaEncontrada != null) {
+            System.out.println("lA persona que se ancla la factura es: " + this.personaEncontrada.getNombre());
         }
     }
     
@@ -292,33 +296,35 @@ public class SistemaFactura extends javax.swing.JFrame {
     private void BuscarProducto(){
         String codigo = this.txtCodeProduct.getText();
         this.productoEncontrado = this.servicio.BuscarProductoPorCodigo(codigo);
-        if(this.productoEncontrado != null){
-            System.out.println("El producto es: " + this.productoEncontrado.getNombre());
-            
+        if(this.productoEncontrado != null) {
+            System.out.println("El producto encontrado es: " + productoEncontrado.getNombre());
+            this.jTextField4.setText(String.valueOf(this.productoEncontrado.getPrecio()));
         }
     }
-    
-    
-    private Producto productoEncontrado;
-    
+        
     
     private void AgregarDetalleFactura() {
         int cantidad = Integer.parseInt(this.txtAmountProduct.getText());
-        if(this.productoEncontrado != null) {
-            DetalleFactura detalle = new DetalleFactura(cantidad, this.productoEncontrado.getPrecio(), this.productoEncontrado);
-            this.detallesFactura.add(detalle);
+        if(this.productoEncontrado != null){
+            // int cantidad, float precioUnitario, Producto producto
+            DetalleFactura nuevoDetalle = new DetalleFactura(cantidad,
+                    this.productoEncontrado.getPrecio(), this.productoEncontrado);
+            this.detallesFactura.add(nuevoDetalle);
+            
+            for(DetalleFactura actualDetalle: this.detallesFactura){
+                System.out.println("Detalle: " + actualDetalle.getProducto().getNombre() + 
+                        ", " + actualDetalle.getProducto().getPrecio());
+            }
         }
     }
     
     
     
     private void RegistrarFactura() {
-        Factura factura = new Factura(this.personaSeleccionada, this.detallesFactura);
-        int registro = this.servicio.RegistrarNuevaFactura(factura);
-        if(registro == 0){
-            System.out.println("Registro Exitoso");
-        }else {
-            System.out.println("Registro fallido");
+        if(this.personaEncontrada != null && this.detallesFactura.size() > 0){
+            // Persona persona, List<DetalleFactura> detalles
+            Factura nuevaFactura = new Factura(this.personaEncontrada, this.detallesFactura);
+            this.servicio.RegistrarNuevaFactura(nuevaFactura);
         }
     }
 

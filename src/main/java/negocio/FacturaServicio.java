@@ -18,43 +18,45 @@ import modelo.Producto;
  */
 public class FacturaServicio {
     
-    private final FacturaDAO facturaDAO;
-    private final ProductoDAO productoDAO;
-    private final PersonaDAO personaDAO;
+    private final PersonaDAO personaDao;
+    private final ProductoDAO productoDao;
+    private final FacturaDAO facturaDao;
     
     
     public FacturaServicio(){
-        this.facturaDAO = new FacturaDAO();
-        this.productoDAO = new ProductoDAO();
-        this.personaDAO = new PersonaDAO();
+        this.personaDao = new PersonaDAO();
+        this.productoDao = new ProductoDAO();
+        this.facturaDao = new FacturaDAO();
     }
     
     
-    public Persona BuscarPersonaPorCedula(String cedula) {
-        Persona personaEncontrada = this.personaDAO.BuscarPersonaPorCedula(cedula);
+    public Persona BuscarPersonaPorCedula(String cedula){
+        Persona personaEncontrada = this.personaDao.BuscarPersonaPorCedula(cedula);
+        if(personaEncontrada == null){
+            System.out.println("No existe esa persona con ese num de cedula");
+        }else{
+            System.out.println("Se encontrodo los detalles de la persona");
+        }
         return personaEncontrada;
     }
     
     
     public Producto BuscarProductoPorCodigo(String codigo){
-        Producto productoEncontrado = this.productoDAO.BuscarProductoPorCodigo(codigo);
+        Producto productoEncontrado = this.productoDao.BuscarProductoPorCodigo(codigo);
+        if(productoEncontrado == null){
+            System.out.println("No existe ese producto con ese num de codigo");
+        }else{
+            System.out.println("Se encontrodo los detalles del producto");
+        }
         return productoEncontrado;
     }
     
-    
-    public Factura obtenerFacturaCompletaPorId(int idFactura){
-        return this.facturaDAO.obtenerFacturaCompletaPorId(idFactura);
+    public Factura ObtenerFacturaCompleta(int idFactura){
+        return this.facturaDao.obtenerFacturaCompletaPorId(idFactura);
     }
     
     
-    public int RegistrarNuevaFactura(Factura nuevaFactura){
-        return this.facturaDAO.RegistrarFactura(nuevaFactura);
-//        for(DetalleFactura d: nuevaFactura.getDetalles()){
-//            Producto p = d.getProducto();
-//            
-//            if(p == null || p.getId() == 0) return false;
-//            
-//            Producto
-//        }
+    public void RegistrarNuevaFactura(Factura nuevaFactura){
+        this.facturaDao.RegistrarFactura(nuevaFactura);
     }
 }
