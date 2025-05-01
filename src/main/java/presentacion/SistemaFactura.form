@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -27,83 +27,202 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel1" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
-                          <Component id="txtNumIdenUser" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtCodeProduct" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="txtNumIdenUser" min="-2" pref="190" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="190" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtAmountProduct" alignment="0" pref="90" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextField4" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblEmailUser" alignment="0" min="-2" pref="406" max="-2" attributes="0"/>
+                          <Component id="txtEmailUser" alignment="0" min="-2" pref="406" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="600" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButton4" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lblSystem" min="-2" pref="406" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblHeaderName1" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jButton3" min="-2" pref="406" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnDeleteProductBill" min="-2" pref="290" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel1" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtNumIdUser" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="txtNameUser" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lblNameUser" alignment="1" min="-2" pref="190" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblLastnameUser" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                              <Component id="txtLastnameUser" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="lblNumIdUser" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="lblHeaderName3" alignment="0" min="-2" pref="406" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                      <Component id="lblCodeProduct" alignment="0" min="-2" pref="406" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="txtCodeProduct" min="-2" pref="190" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="btnSearchProduct" min="-2" pref="198" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblInfoProduct" alignment="0" min="-2" pref="406" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="txtNameProduct" min="-2" pref="182" max="-2" attributes="0"/>
+                                                  <Component id="lblNameProduct" alignment="1" min="-2" pref="182" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="txtAmountProduct" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  <Component id="lblAmountProduct" min="-2" pref="100" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                                      <Component id="lblPriceProduct" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="txtPriceProduct" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnGenerateInvoice" min="-2" pref="290" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="lblSubtotal" alignment="0" pref="90" max="32767" attributes="0"/>
+                                          <Component id="lblIva" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lblTotal" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="lblIvaPrice" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lblTotalPrice" alignment="0" pref="185" max="32767" attributes="0"/>
+                                          <Component id="lblSubtotalPrice" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblHeaderName1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="lblSystem" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtNumIdenUser" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="444" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtCodeProduct" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSubtotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSubtotalPrice" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblIva" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblIvaPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtNumIdenUser" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jButton1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblHeaderName3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblLastnameUser" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="lblNameUser" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtNameUser" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="txtLastnameUser" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblNumIdUser" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtNumIdUser" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblEmailUser" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtEmailUser" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblInfoProduct" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblCodeProduct" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtCodeProduct" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="btnSearchProduct" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblAmountProduct" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="lblPriceProduct" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtAmountProduct" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtPriceProduct" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="txtAmountProduct" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNameProduct" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField4" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNameProduct" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton4" min="-2" pref="53" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButton3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="btnDeleteProductBill" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="btnGenerateInvoice" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -111,7 +230,21 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Buscar Cliente"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -119,31 +252,47 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="N&#xfa;mero c&#xe9;dula"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="N&#xfa;mero de c&#xe9;dula del cliente"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNumIdenUser">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumIdenUserActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSearchProduct">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Buscar Producto"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchProductActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="lblCodeProduct">
       <Properties>
-        <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Buscar producto por C&#xf3;digo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCodeProduct">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodeProductActionPerformed"/>
-      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -152,55 +301,330 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tblListDetails">
           <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              <Table columnCount="4" rowCount="22">
+                <Column editable="true" title="Cantidad" type="java.lang.Object"/>
+                <Column editable="true" title="Descripci&#xf3;n" type="java.lang.Object"/>
+                <Column editable="true" title="Precio Unitario" type="java.lang.Object"/>
+                <Column editable="true" title="Total" type="java.lang.Object"/>
               </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="txtAmountProduct">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAmountProductActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAmountProduct">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cantidad"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="lblPriceProduct">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Precio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JTextField" name="txtPriceProduct">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Agregar Producto"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
+    <Component class="javax.swing.JButton" name="btnGenerateInvoice">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Crear Factura"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Generar Factura"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerateInvoiceActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblSystem">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="SISTEMA FACTURACI&#xd3;N"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblHeaderName1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="DETALLES DE LA FACTURA"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblInfoProduct">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="text" type="java.lang.String" value="Informaci&#xf3;n del producto comprado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNumIdUser">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="N&#xfa;mero de c&#xe9;dula"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNumIdUser">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEmailUser">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Correo electr&#xf3;nico"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtEmailUser">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLastnameUser">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Apellido"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtLastnameUser">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNameUser">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nombre"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNameUser">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblHeaderName3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="text" type="java.lang.String" value="Informaci&#xf3;n del Cliente a facturar:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDeleteProductBill">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Eliminar Detalle"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteProductBillActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblSubtotal">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="SUBTOTAL:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblIva">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="IVA 15%:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTotal">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="TOTAL:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTotalPrice">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblIvaPrice">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblSubtotalPrice">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNameProduct">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNameProduct">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nombre"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -11,7 +11,7 @@ import util.PersistenceUtil;
 
 /**
  *
- * @author XRLab
+ * @author Jheyson Gaona
  */
 public class FacturaDAO {
     
@@ -41,10 +41,12 @@ public class FacturaDAO {
     }
     
     
-    
-    public Factura obtenerFacturaCompletaPorId(int idFactura) {
+    // Se emplea este metodo para obtener la factura por el ID
+    public Factura ObtenerFacturaCompletaPorId(int idFactura) {
+        // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
         try {
+            // Se genera el query para buscar toda la informacion de la factura
             return em.createQuery("""
                     SELECT f FROM Factura f
                     JOIN FETCH f.persona

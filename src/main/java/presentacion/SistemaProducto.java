@@ -46,7 +46,7 @@ public class SistemaProducto extends javax.swing.JFrame {
         };
 
         // Asignas el modelo a la tabla
-        this.tbListUser.setModel(modelo);
+        this.tbListProduct.setModel(modelo);
         
         // Actualiza la tabla con todos los registros de los usuarios y
         // Se limpia el formulario para setear los botones
@@ -63,30 +63,30 @@ public class SistemaProducto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblHeaderName = new javax.swing.JLabel();
-        lblLastnameUser = new javax.swing.JLabel();
+        lblSystemProduct = new javax.swing.JLabel();
+        lblCodeProduct = new javax.swing.JLabel();
         txtCodeProduct = new javax.swing.JTextField();
-        lblNameUser = new javax.swing.JLabel();
+        lblNameProduct = new javax.swing.JLabel();
         txtNameProduct = new javax.swing.JTextField();
-        lblNumIdUser = new javax.swing.JLabel();
+        lblPriceProduct = new javax.swing.JLabel();
         txtPriceProduct = new javax.swing.JTextField();
         btnRegisterProduct = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbListUser = new javax.swing.JTable();
+        tbListProduct = new javax.swing.JTable();
         btnUpdateProduct = new javax.swing.JButton();
         btnDeleteProduct = new javax.swing.JButton();
-        lblHeaderName1 = new javax.swing.JLabel();
+        lblListProdutcRegister = new javax.swing.JLabel();
         btnClearProduct = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
 
-        lblHeaderName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblHeaderName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHeaderName.setText("SISTEMA PRODUCTO");
+        lblSystemProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSystemProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSystemProduct.setText("SISTEMA PRODUCTO");
 
-        lblLastnameUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblLastnameUser.setText("Codigo producto");
+        lblCodeProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCodeProduct.setText("Codigo producto");
 
         txtCodeProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtCodeProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -95,8 +95,8 @@ public class SistemaProducto extends javax.swing.JFrame {
             }
         });
 
-        lblNameUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblNameUser.setText("Nombre producto");
+        lblNameProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNameProduct.setText("Nombre producto");
 
         txtNameProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNameProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -105,17 +105,14 @@ public class SistemaProducto extends javax.swing.JFrame {
             }
         });
 
-        lblNumIdUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblNumIdUser.setText("Precio");
+        lblPriceProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPriceProduct.setText("Precio");
 
         txtPriceProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtPriceProduct.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPriceProductKeyTyped(evt);
-            }
-        });
 
+        btnRegisterProduct.setBackground(new java.awt.Color(0, 153, 51));
         btnRegisterProduct.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegisterProduct.setForeground(new java.awt.Color(255, 255, 255));
         btnRegisterProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnRegisterProduct.setLabel("Registrar");
         btnRegisterProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -124,8 +121,8 @@ public class SistemaProducto extends javax.swing.JFrame {
             }
         });
 
-        tbListUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tbListUser.setModel(new javax.swing.table.DefaultTableModel(
+        tbListProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tbListProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -152,14 +149,16 @@ public class SistemaProducto extends javax.swing.JFrame {
                 "Nombre", "Codigo", "Precio"
             }
         ));
-        tbListUser.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbListProduct.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbListUserMouseClicked(evt);
+                tbListProductMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbListUser);
+        jScrollPane1.setViewportView(tbListProduct);
 
+        btnUpdateProduct.setBackground(new java.awt.Color(255, 153, 0));
         btnUpdateProduct.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnUpdateProduct.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateProduct.setText("Actualizar");
         btnUpdateProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnUpdateProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -168,7 +167,9 @@ public class SistemaProducto extends javax.swing.JFrame {
             }
         });
 
+        btnDeleteProduct.setBackground(new java.awt.Color(255, 0, 0));
         btnDeleteProduct.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDeleteProduct.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteProduct.setText("Eliminar");
         btnDeleteProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnDeleteProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -177,10 +178,11 @@ public class SistemaProducto extends javax.swing.JFrame {
             }
         });
 
-        lblHeaderName1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblHeaderName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHeaderName1.setText("LISTA DE PRODUCTOS REGISTRADOS");
+        lblListProdutcRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblListProdutcRegister.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblListProdutcRegister.setText("LISTA DE PRODUCTOS REGISTRADOS");
 
+        btnClearProduct.setBackground(new java.awt.Color(0, 204, 204));
         btnClearProduct.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnClearProduct.setText("Limpiar");
         btnClearProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -197,7 +199,7 @@ public class SistemaProducto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNumIdUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPriceProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnUpdateProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -206,14 +208,14 @@ public class SistemaProducto extends javax.swing.JFrame {
                         .addComponent(btnClearProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblHeaderName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblSystemProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNameProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                    .addComponent(lblNameUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblNameProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCodeProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCodeProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(txtPriceProduct)
                             .addComponent(btnRegisterProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -221,27 +223,27 @@ public class SistemaProducto extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addComponent(lblHeaderName1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblListProdutcRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeaderName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHeaderName1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSystemProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblListProdutcRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblCodeProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNameProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNameProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCodeProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblNumIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPriceProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPriceProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(180, 180, 180)
@@ -270,9 +272,9 @@ public class SistemaProducto extends javax.swing.JFrame {
         RegistrarNuevoProducto();
     }//GEN-LAST:event_btnRegisterProductActionPerformed
 
-    private void tbListUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListUserMouseClicked
+    private void tbListProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListProductMouseClicked
         LlenarFormularioDesdeTabla();
-    }//GEN-LAST:event_tbListUserMouseClicked
+    }//GEN-LAST:event_tbListProductMouseClicked
 
     private void btnUpdateProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateProductActionPerformed
         ActualizarDatosProducto();
@@ -285,14 +287,6 @@ public class SistemaProducto extends javax.swing.JFrame {
     private void btnClearProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearProductActionPerformed
         LimpiarFormulario();
     }//GEN-LAST:event_btnClearProductActionPerformed
-
-    private void txtPriceProductKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceProductKeyTyped
-        char c = evt.getKeyChar();
-        // Si es un caracter se consume solo acepta de 0-9
-        if(!Character.isDigit(c)){
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtPriceProductKeyTyped
 
     
     // Se emplea este metodo para poder registrar una nueva producto en la DB
@@ -334,7 +328,7 @@ public class SistemaProducto extends javax.swing.JFrame {
     // Se emplea este metodo para poder actualizar el producto en la DB
     private void ActualizarDatosProducto(){
         // Se obtiene el id seleccionado de la tabla
-        int filaSeleccionada = this.tbListUser.getSelectedRow();
+        int filaSeleccionada = this.tbListProduct.getSelectedRow();
             // Se valdia que la fila seleccionada sea superior a cero 
             if (filaSeleccionada >= 0) {
             // Si el formulario esta lleno proceder a enviarlo a la capa de negocio
@@ -364,7 +358,7 @@ public class SistemaProducto extends javax.swing.JFrame {
     // Se emplea este metodo para poder eliminar el producto en la DB
     private void EliminarRegistroProducto(){
         // Se obtiene el id seleccionado de la tabla
-        int filaSeleccionada = this.tbListUser.getSelectedRow();
+        int filaSeleccionada = this.tbListProduct.getSelectedRow();
         
         // Se valdia que la fila seleccionada sea superior a cero 
         if (filaSeleccionada >= 0) {
@@ -444,7 +438,7 @@ public class SistemaProducto extends javax.swing.JFrame {
     // Metodo que se emplea para poder llenar el formulario luego de selecionar
     // una columna de la tabla
     private void LlenarFormularioDesdeTabla() {
-        int filaSeleccionada = this.tbListUser.getSelectedRow();
+        int filaSeleccionada = this.tbListProduct.getSelectedRow();
 
         // Se valida si se ha selecionado una fila positiva
         if (filaSeleccionada >= 0) {
@@ -453,9 +447,9 @@ public class SistemaProducto extends javax.swing.JFrame {
             this.btnRegisterProduct.setEnabled(false);
 
             // Obtiene los valores de cada columna según el índice
-            String nombre = this.tbListUser.getValueAt(filaSeleccionada, 0).toString();
-            String codigo = this.tbListUser.getValueAt(filaSeleccionada, 1).toString();
-            String precio = this.tbListUser.getValueAt(filaSeleccionada, 2).toString();
+            String nombre = this.tbListProduct.getValueAt(filaSeleccionada, 0).toString();
+            String codigo = this.tbListProduct.getValueAt(filaSeleccionada, 1).toString();
+            String precio = this.tbListProduct.getValueAt(filaSeleccionada, 2).toString();
 
             // Asigna a tus campos de formulario
             this.txtNameProduct.setText(nombre);
@@ -471,7 +465,7 @@ public class SistemaProducto extends javax.swing.JFrame {
         this.txtCodeProduct.setText("");
         this.txtPriceProduct.setText("");
         
-        this.tbListUser.clearSelection();
+        this.tbListProduct.clearSelection();
         this.btnRegisterProduct.setEnabled(true);
         this.btnDeleteProduct.setEnabled(false);
         this.btnUpdateProduct.setEnabled(false);
@@ -525,12 +519,12 @@ public class SistemaProducto extends javax.swing.JFrame {
     private javax.swing.JButton btnRegisterProduct;
     private javax.swing.JButton btnUpdateProduct;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblHeaderName;
-    private javax.swing.JLabel lblHeaderName1;
-    private javax.swing.JLabel lblLastnameUser;
-    private javax.swing.JLabel lblNameUser;
-    private javax.swing.JLabel lblNumIdUser;
-    private javax.swing.JTable tbListUser;
+    private javax.swing.JLabel lblCodeProduct;
+    private javax.swing.JLabel lblListProdutcRegister;
+    private javax.swing.JLabel lblNameProduct;
+    private javax.swing.JLabel lblPriceProduct;
+    private javax.swing.JLabel lblSystemProduct;
+    private javax.swing.JTable tbListProduct;
     private javax.swing.JTextField txtCodeProduct;
     private javax.swing.JTextField txtNameProduct;
     private javax.swing.JTextField txtPriceProduct;

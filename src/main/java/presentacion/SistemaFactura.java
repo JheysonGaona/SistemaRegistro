@@ -6,6 +6,8 @@ package presentacion;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.DetalleFactura;
 import modelo.Factura;
 import modelo.Persona;
@@ -14,32 +16,38 @@ import negocio.FacturaServicio;
 
 /**
  *
- * @author XRLab
+ * @author Jheyson Gaona
  */
+
 public class SistemaFactura extends javax.swing.JFrame {
     
+    // Variables globales
     private List<DetalleFactura> detallesFactura = new ArrayList();
-    
-    private Persona personaEncontrada;
-    
     private final FacturaServicio servicio;
-    
+    private Persona personaEncontrada;
     private Producto productoEncontrado;
+    private final DefaultTableModel modelo;
     
     /**
      * Creates new form SistemaFactura
      */
     public SistemaFactura() {
-        servicio = new FacturaServicio();
         initComponents();
+        this.servicio = new FacturaServicio();
         
-        Factura miFactura = servicio.ObtenerFacturaCompleta(5);
-        
-        System.out.println("Cliente factura: " + miFactura.getPersona().getNombre());
-        for(DetalleFactura detalle: miFactura.getDetalles()){
-            System.out.println("Producto: " + detalle.getProducto().getNombre()
-             + " - " + detalle.getProducto().getPrecio() + ", "+ detalle.getCantidad());
-        }
+        // Se gestiona la accion de que la tabla no sea editable
+        this.modelo = new DefaultTableModel(
+            new String[] {"Cantidad", "Descripción", "Precio Unitario", "Total"}, 0
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // ninguna celda será editable
+                return false;
+            }
+        };
+
+        // Asignas el modelo a la tabla
+        this.tblListDetails.setModel(modelo);
     }
 
     /**
@@ -54,92 +62,217 @@ public class SistemaFactura extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtNumIdenUser = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        btnSearchProduct = new javax.swing.JButton();
+        lblCodeProduct = new javax.swing.JLabel();
         txtCodeProduct = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblListDetails = new javax.swing.JTable();
         txtAmountProduct = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        lblAmountProduct = new javax.swing.JLabel();
+        lblPriceProduct = new javax.swing.JLabel();
+        txtPriceProduct = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnGenerateInvoice = new javax.swing.JButton();
+        lblSystem = new javax.swing.JLabel();
+        lblHeaderName1 = new javax.swing.JLabel();
+        lblInfoProduct = new javax.swing.JLabel();
+        lblNumIdUser = new javax.swing.JLabel();
+        txtNumIdUser = new javax.swing.JTextField();
+        lblEmailUser = new javax.swing.JLabel();
+        txtEmailUser = new javax.swing.JTextField();
+        lblLastnameUser = new javax.swing.JLabel();
+        txtLastnameUser = new javax.swing.JTextField();
+        lblNameUser = new javax.swing.JLabel();
+        txtNameUser = new javax.swing.JTextField();
+        lblHeaderName3 = new javax.swing.JLabel();
+        btnDeleteProductBill = new javax.swing.JButton();
+        lblSubtotal = new javax.swing.JLabel();
+        lblIva = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        lblTotalPrice = new javax.swing.JLabel();
+        lblIvaPrice = new javax.swing.JLabel();
+        lblSubtotalPrice = new javax.swing.JLabel();
+        txtNameProduct = new javax.swing.JTextField();
+        lblNameProduct = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Buscar");
+        jButton1.setBackground(new java.awt.Color(0, 153, 51));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Buscar Cliente");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Número cédula");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setText("Número de cédula del cliente");
 
-        txtNumIdenUser.addActionListener(new java.awt.event.ActionListener() {
+        txtNumIdenUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnSearchProduct.setBackground(new java.awt.Color(0, 153, 51));
+        btnSearchProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSearchProduct.setForeground(new java.awt.Color(255, 255, 255));
+        btnSearchProduct.setText("Buscar Producto");
+        btnSearchProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumIdenUserActionPerformed(evt);
+                btnSearchProductActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Buscar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        lblCodeProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCodeProduct.setText("Buscar producto por Código");
 
-        jLabel2.setText("Código");
-
-        txtCodeProduct.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodeProductActionPerformed(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblListDetails.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tblListDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cantidad", "Descripción", "Precio Unitario", "Total"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblListDetails);
 
-        txtAmountProduct.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAmountProductActionPerformed(evt);
-            }
-        });
+        txtAmountProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel3.setText("Cantidad");
+        lblAmountProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAmountProduct.setText("Cantidad");
 
-        jLabel4.setText("Precio");
+        lblPriceProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPriceProduct.setText("Precio");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
+        txtPriceProduct.setEditable(false);
+        txtPriceProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPriceProduct.setEnabled(false);
 
-        jButton3.setText("Agregar");
+        jButton3.setBackground(new java.awt.Color(0, 153, 51));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Agregar Producto");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Crear Factura");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerateInvoice.setBackground(new java.awt.Color(255, 153, 0));
+        btnGenerateInvoice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGenerateInvoice.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerateInvoice.setText("Generar Factura");
+        btnGenerateInvoice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnGenerateInvoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnGenerateInvoiceActionPerformed(evt);
             }
         });
+
+        lblSystem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSystem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSystem.setText("SISTEMA FACTURACIÓN");
+
+        lblHeaderName1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblHeaderName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeaderName1.setText("DETALLES DE LA FACTURA");
+
+        lblInfoProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblInfoProduct.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblInfoProduct.setText("Información del producto comprado");
+
+        lblNumIdUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNumIdUser.setText("Número de cédula");
+
+        txtNumIdUser.setEditable(false);
+        txtNumIdUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNumIdUser.setEnabled(false);
+
+        lblEmailUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblEmailUser.setText("Correo electrónico");
+
+        txtEmailUser.setEditable(false);
+        txtEmailUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtEmailUser.setEnabled(false);
+
+        lblLastnameUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblLastnameUser.setText("Apellido");
+
+        txtLastnameUser.setEditable(false);
+        txtLastnameUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtLastnameUser.setEnabled(false);
+
+        lblNameUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNameUser.setText("Nombre");
+
+        txtNameUser.setEditable(false);
+        txtNameUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNameUser.setEnabled(false);
+
+        lblHeaderName3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblHeaderName3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblHeaderName3.setText("Información del Cliente a facturar:");
+
+        btnDeleteProductBill.setBackground(new java.awt.Color(255, 0, 0));
+        btnDeleteProductBill.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDeleteProductBill.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeleteProductBill.setText("Eliminar Detalle");
+        btnDeleteProductBill.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnDeleteProductBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteProductBillActionPerformed(evt);
+            }
+        });
+
+        lblSubtotal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSubtotal.setText("SUBTOTAL:");
+
+        lblIva.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblIva.setText("IVA 15%:");
+
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTotal.setText("TOTAL:");
+
+        lblTotalPrice.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTotalPrice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalPrice.setText("00");
+
+        lblIvaPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblIvaPrice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblIvaPrice.setText("00");
+
+        lblSubtotalPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSubtotalPrice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSubtotalPrice.setText("00");
+
+        txtNameProduct.setEditable(false);
+        txtNameProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNameProduct.setEnabled(false);
+
+        lblNameProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNameProduct.setText("Nombre");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,102 +282,180 @@ public class SistemaFactura extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumIdenUser)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCodeProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNumIdenUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtAmountProduct, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(130, 130, 130))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                                .addComponent(lblSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblHeaderName1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnDeleteProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtNumIdUser)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(txtNameUser, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(26, 26, 26)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(lblNumIdUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblHeaderName3, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblCodeProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtCodeProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnSearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(lblInfoProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtNameProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lblNameProduct, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(txtAmountProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lblAmountProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(lblPriceProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(txtPriceProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnGenerateInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(lblSubtotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                            .addComponent(lblIva, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(lblIvaPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblTotalPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                            .addComponent(lblSubtotalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHeaderName1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNumIdenUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel2)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCodeProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
-                        .addGap(14, 14, 14)
+                            .addComponent(lblSubtotal)
+                            .addComponent(lblSubtotalPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblIva)
+                            .addComponent(lblIvaPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTotal)
+                            .addComponent(lblTotalPrice))
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNumIdenUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblHeaderName3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNameUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblNumIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNumIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblInfoProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCodeProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCodeProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblAmountProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblPriceProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAmountProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtPriceProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtAmountProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(lblNameProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14))
+                                .addComponent(txtNameProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeleteProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGenerateInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNumIdenUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumIdenUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumIdenUserActionPerformed
-
-    private void txtCodeProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodeProductActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodeProductActionPerformed
-
-    private void txtAmountProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountProductActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAmountProductActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         BuscarPersona();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
         BuscarProducto();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnSearchProductActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnGenerateInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateInvoiceActionPerformed
         RegistrarFactura();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnGenerateInvoiceActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         AgregarDetalleFactura();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnDeleteProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProductBillActionPerformed
+        EliminarDetalle();
+    }//GEN-LAST:event_btnDeleteProductBillActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,26 +494,45 @@ public class SistemaFactura extends javax.swing.JFrame {
     
     
     
+    // Se emplea este metodo para poder buscar la persona y poderla registrar
+    // dentro del sistema de facturación
     private void BuscarPersona() {
+        // Se obtiene el texto del numero de cedula del formulario
         String cedula = this.txtNumIdenUser.getText();
         this.personaEncontrada = this.servicio.BuscarPersonaPorCedula(cedula);
+        // Se verifica que exista una persona encontrada para llenar el formulario
         if(this.personaEncontrada != null) {
-            System.out.println("lA persona que se ancla la factura es: " + this.personaEncontrada.getNombre());
+            this.txtNameUser.setText(this.personaEncontrada.getNombre());
+            this.txtLastnameUser.setText(this.personaEncontrada.getApellido());
+            this.txtNumIdUser.setText(this.personaEncontrada.getNumIdentificacion());
+            this.txtEmailUser.setText(this.personaEncontrada.getCorreo());
+        
+        // Si no se encontro una persona se noticia al usuario
+        }else{
+            
         }
     }
     
     
     
+    // Se emplea este metodo para poder buscar el producto y asignarlo como detalle
     private void BuscarProducto(){
         String codigo = this.txtCodeProduct.getText();
         this.productoEncontrado = this.servicio.BuscarProductoPorCodigo(codigo);
+        // Si se ha encontrado el producto
         if(this.productoEncontrado != null) {
-            System.out.println("El producto encontrado es: " + productoEncontrado.getNombre());
-            this.jTextField4.setText(String.valueOf(this.productoEncontrado.getPrecio()));
+            // Se pone el precio del producto en el formulario
+            this.txtPriceProduct.setText(String.valueOf(this.productoEncontrado.getPrecio()));
+            this.txtNameProduct.setText(this.productoEncontrado.getNombre());
+        
+        // Si no se encontro el producto se noticia al usuario
+        }else{
+            
         }
     }
         
     
+    // Se emplea este metodo para poder agregar el detalle a la factura
     private void AgregarDetalleFactura() {
         int cantidad = Integer.parseInt(this.txtAmountProduct.getText());
         if(this.productoEncontrado != null){
@@ -310,17 +540,63 @@ public class SistemaFactura extends javax.swing.JFrame {
             DetalleFactura nuevoDetalle = new DetalleFactura(cantidad,
                     this.productoEncontrado.getPrecio(), this.productoEncontrado);
             this.detallesFactura.add(nuevoDetalle);
-            
-            for(DetalleFactura actualDetalle: this.detallesFactura){
-                System.out.println("Detalle: " + actualDetalle.getProducto().getNombre() + 
-                        ", " + actualDetalle.getProducto().getPrecio());
+            ActualizarTablaRegistro();
+        }
+    }
+    
+    
+    // Se emplea este metodo para poder eliminar el detalle de la factura a crear
+    private void EliminarDetalle(){
+        // Se obtiene el id seleccionado de la tabla
+        int filaSeleccionada = this.tblListDetails.getSelectedRow();
+        
+        // Se valdia que la fila seleccionada sea superior a cero 
+        if (filaSeleccionada >= 0) {
+            // Confirmar antes de eliminar
+            int confirmacion = JOptionPane.showConfirmDialog(null,
+                    "¿Estás seguro de eliminar el detalle: " +
+                        this.detallesFactura.get(filaSeleccionada).getProducto().getNombre(),
+                    "Confirmar eliminación",
+                    JOptionPane.YES_NO_OPTION);
+
+            // La confirmación ha sido exitosa
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                this.detallesFactura.remove(filaSeleccionada);
+                ActualizarTablaRegistro();
             }
         }
     }
     
     
+    // Metodo que se emplea para poder actualizar los registros de la tabla
+    private void ActualizarTablaRegistro() {
+        float subTotal = 0;
+        // Limpia la tabla antes de llenarla
+        this.modelo.setRowCount(0);
+        // Ciclo repetitivo mejorado para llenar la tabla con registros
+        for (DetalleFactura detalleActual : this.detallesFactura) {
+            float total = detalleActual.getCantidad() * detalleActual.getProducto().getPrecio();
+            subTotal += total;
+            Object[] fila = new Object[] {
+                detalleActual.getCantidad(),
+                detalleActual.getProducto().getNombre(),
+                detalleActual.getProducto().getPrecio(),
+                total
+            };
+            this.modelo.addRow(fila);
+        }
+        float iva = subTotal * 0.15f;
+        float total = iva + subTotal;
+        // Se establece el Subtotal, IVA y Total
+        this.lblSubtotalPrice.setText(String.format("%.2f", subTotal));
+        this.lblIvaPrice.setText(String.format("%.2f", iva));
+        this.lblTotalPrice.setText(String.format("%.2f", total));
+    }
     
+    
+    // Se emplea este metodo para poder registrar la factura
     private void RegistrarFactura() {
+        // Se valida que exista detalles de la factura y una persona a facturar
         if(this.personaEncontrada != null && this.detallesFactura.size() > 0){
             // Persona persona, List<DetalleFactura> detalles
             Factura nuevaFactura = new Factura(this.personaEncontrada, this.detallesFactura);
@@ -329,19 +605,40 @@ public class SistemaFactura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeleteProductBill;
+    private javax.swing.JButton btnGenerateInvoice;
+    private javax.swing.JButton btnSearchProduct;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lblAmountProduct;
+    private javax.swing.JLabel lblCodeProduct;
+    private javax.swing.JLabel lblEmailUser;
+    private javax.swing.JLabel lblHeaderName1;
+    private javax.swing.JLabel lblHeaderName3;
+    private javax.swing.JLabel lblInfoProduct;
+    private javax.swing.JLabel lblIva;
+    private javax.swing.JLabel lblIvaPrice;
+    private javax.swing.JLabel lblLastnameUser;
+    private javax.swing.JLabel lblNameProduct;
+    private javax.swing.JLabel lblNameUser;
+    private javax.swing.JLabel lblNumIdUser;
+    private javax.swing.JLabel lblPriceProduct;
+    private javax.swing.JLabel lblSubtotal;
+    private javax.swing.JLabel lblSubtotalPrice;
+    private javax.swing.JLabel lblSystem;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblTotalPrice;
+    private javax.swing.JTable tblListDetails;
     private javax.swing.JTextField txtAmountProduct;
     private javax.swing.JTextField txtCodeProduct;
+    private javax.swing.JTextField txtEmailUser;
+    private javax.swing.JTextField txtLastnameUser;
+    private javax.swing.JTextField txtNameProduct;
+    private javax.swing.JTextField txtNameUser;
+    private javax.swing.JTextField txtNumIdUser;
     private javax.swing.JTextField txtNumIdenUser;
+    private javax.swing.JTextField txtPriceProduct;
     // End of variables declaration//GEN-END:variables
 }

@@ -66,7 +66,7 @@ public class SistemaUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblHeaderName = new javax.swing.JLabel();
+        lblSystemUser = new javax.swing.JLabel();
         lblLastnameUser = new javax.swing.JLabel();
         txtLastnameUser = new javax.swing.JTextField();
         lblNameUser = new javax.swing.JLabel();
@@ -75,22 +75,22 @@ public class SistemaUsuario extends javax.swing.JFrame {
         txtNumIdUser = new javax.swing.JTextField();
         lblEmailUser = new javax.swing.JLabel();
         txtEmailUser = new javax.swing.JTextField();
-        lblEmailUser1 = new javax.swing.JLabel();
+        lblDateUser = new javax.swing.JLabel();
         btnRegisterUser = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListUser = new javax.swing.JTable();
         txtDateUser = new javax.swing.JTextField();
         btnUpdateUser = new javax.swing.JButton();
         btnDeleteUser = new javax.swing.JButton();
-        lblHeaderName1 = new javax.swing.JLabel();
+        lblListUserRegister = new javax.swing.JLabel();
         btnClearUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
 
-        lblHeaderName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblHeaderName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHeaderName.setText("SISTEMA USUARIO");
+        lblSystemUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSystemUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSystemUser.setText("SISTEMA USUARIO");
 
         lblLastnameUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLastnameUser.setText("Apellido");
@@ -132,10 +132,12 @@ public class SistemaUsuario extends javax.swing.JFrame {
             }
         });
 
-        lblEmailUser1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblEmailUser1.setText("Fecha de nacimiento (dd-mm-yyyy)");
+        lblDateUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDateUser.setText("Fecha de nacimiento (dd-mm-yyyy)");
 
+        btnRegisterUser.setBackground(new java.awt.Color(0, 153, 51));
         btnRegisterUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegisterUser.setForeground(new java.awt.Color(255, 255, 255));
         btnRegisterUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnRegisterUser.setLabel("Registrar");
         btnRegisterUser.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +188,9 @@ public class SistemaUsuario extends javax.swing.JFrame {
             }
         });
 
+        btnUpdateUser.setBackground(new java.awt.Color(255, 153, 0));
         btnUpdateUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnUpdateUser.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateUser.setText("Actualizar");
         btnUpdateUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnUpdateUser.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +199,9 @@ public class SistemaUsuario extends javax.swing.JFrame {
             }
         });
 
+        btnDeleteUser.setBackground(new java.awt.Color(255, 0, 0));
         btnDeleteUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDeleteUser.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteUser.setText("Eliminar");
         btnDeleteUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnDeleteUser.addActionListener(new java.awt.event.ActionListener() {
@@ -204,10 +210,11 @@ public class SistemaUsuario extends javax.swing.JFrame {
             }
         });
 
-        lblHeaderName1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblHeaderName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHeaderName1.setText("LISTA DE USUARIOS REGISTRADOS");
+        lblListUserRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblListUserRegister.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblListUserRegister.setText("LISTA DE USUARIOS REGISTRADOS");
 
+        btnClearUser.setBackground(new java.awt.Color(0, 204, 204));
         btnClearUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnClearUser.setText("Limpiar");
         btnClearUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -233,7 +240,7 @@ public class SistemaUsuario extends javax.swing.JFrame {
                         .addComponent(btnClearUser, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblHeaderName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblSystemUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNameUser, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
@@ -244,25 +251,23 @@ public class SistemaUsuario extends javax.swing.JFrame {
                                     .addComponent(txtLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(txtNumIdUser)
                             .addComponent(btnRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEmailUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDateUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblEmailUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtEmailUser))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txtDateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtEmailUser)
+                            .addComponent(txtDateUser))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHeaderName1, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE))
+                    .addComponent(lblListUserRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeaderName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHeaderName1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSystemUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblListUserRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -282,7 +287,7 @@ public class SistemaUsuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lblEmailUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -617,13 +622,13 @@ public class SistemaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnRegisterUser;
     private javax.swing.JButton btnUpdateUser;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblDateUser;
     private javax.swing.JLabel lblEmailUser;
-    private javax.swing.JLabel lblEmailUser1;
-    private javax.swing.JLabel lblHeaderName;
-    private javax.swing.JLabel lblHeaderName1;
     private javax.swing.JLabel lblLastnameUser;
+    private javax.swing.JLabel lblListUserRegister;
     private javax.swing.JLabel lblNameUser;
     private javax.swing.JLabel lblNumIdUser;
+    private javax.swing.JLabel lblSystemUser;
     private javax.swing.JTable tbListUser;
     private javax.swing.JTextField txtDateUser;
     private javax.swing.JTextField txtEmailUser;

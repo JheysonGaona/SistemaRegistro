@@ -7,22 +7,23 @@ package negocio;
 import datos.FacturaDAO;
 import datos.PersonaDAO;
 import datos.ProductoDAO;
-import modelo.DetalleFactura;
 import modelo.Factura;
 import modelo.Persona;
 import modelo.Producto;
 
 /**
  *
- * @author XRLab
+ * @author Jheyson Gaona
  */
 public class FacturaServicio {
     
+    // Variables globales
     private final PersonaDAO personaDao;
     private final ProductoDAO productoDao;
     private final FacturaDAO facturaDao;
     
     
+    // Constructor vacio, al declarar se instancian las variables globales
     public FacturaServicio(){
         this.personaDao = new PersonaDAO();
         this.productoDao = new ProductoDAO();
@@ -30,6 +31,8 @@ public class FacturaServicio {
     }
     
     
+    
+    // Metodo
     public Persona BuscarPersonaPorCedula(String cedula){
         Persona personaEncontrada = this.personaDao.BuscarPersonaPorCedula(cedula);
         if(personaEncontrada == null){
@@ -52,7 +55,7 @@ public class FacturaServicio {
     }
     
     public Factura ObtenerFacturaCompleta(int idFactura){
-        return this.facturaDao.obtenerFacturaCompletaPorId(idFactura);
+        return this.facturaDao.ObtenerFacturaCompletaPorId(idFactura);
     }
     
     

@@ -12,18 +12,17 @@ import util.PersistenceUtil;
 
 /**
  *
- * @author JHeyson Gaona
+ * @author Jheyson Gaona
  */
 public class PersonaDAO {
     
-    // private final ConexionDB conexionDB;
-    
     
     public PersonaDAO(){
-        // this.conexionDB = new ConexionDB();
+        
     }
     
     
+    // Se emplea este metodo para poder agregar la persona
     public void AgregarPersona(Persona personaAgregar){
         // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
@@ -48,6 +47,8 @@ public class PersonaDAO {
     
     // [0] ya existe la persomna  [1] no existe la persona, registro exitoso
     // [2] Hubo un error inesperado
+    // Se emplea este petodo para verificar si existe primero la persona
+    // y posterior a ello intentar registrarla
     public int VerificarAgregarPersona(Persona personaAgregar){
         int result = 0;
         
@@ -87,6 +88,8 @@ public class PersonaDAO {
 
     // [0] ya existe la persona  [1] registro de persona exitoso
     // [2] Error interno
+    // Se emplea este metodo para verificar si existe la persona por su cedula
+    // y si no existe se procede a registrarla
     public int RegistrarPersona(Persona personaAgregar){
         // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
@@ -123,12 +126,17 @@ public class PersonaDAO {
     
     // Metodo que permite actulizar la persona
     public boolean ActualizarPersona(int id, Persona personaActualizar) {
+        // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
         try {
+            // Se verifica si la persona que se intenta actualizar existe
             Persona existente = em.find(Persona.class, id);
             if (existente == null) return false;
 
+            // Se inicia la transicion
             em.getTransaction().begin();
+            
+            // Se actualiza cada parametro de la persona
             existente.setNombre(personaActualizar.getNombre());
             existente.setApellido(personaActualizar.getApellido());
             existente.setNumIdentificacion(personaActualizar.getNumIdentificacion());
@@ -136,11 +144,15 @@ public class PersonaDAO {
             existente.setFechaNacimiento(personaActualizar.getFechaNacimiento());
             
             // em.merge(personaActualizar);
+            // Confirmar y guardar los cambios
             em.getTransaction().commit();
             return true;
 
         } catch (Exception ex) {
-            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            // Revertir todo, no guardar nada
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             return false;
         } finally {
             em.close();
@@ -151,21 +163,28 @@ public class PersonaDAO {
     // Eliminar persona
     // Si retorna true se elimino el registro, false no se pudo eliminar
     public boolean EliminarPersona(int numId) {
+        // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
         try {
+            // Se verifica si la persona que se intenta eliminar existe
             Persona persona = em.find(Persona.class, numId);
             
+            // Existe la persona a eliminar
             if (persona == null) {
                 return false;
             }
-
+            // Se inicia la transicion
             em.getTransaction().begin();
+            // Se elimina la persona de la DB
             em.remove(persona);
+            // Confirmar y guardar los cambios
             em.getTransaction().commit();
             return true;
-
         } catch (Exception ex) {
-            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            // Revertir todo, no guardar nada
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             return false;
         } finally {
             em.close();
@@ -175,8 +194,10 @@ public class PersonaDAO {
     
     // Devuelve en una lista todas las personas
     public List<Persona> ListarPersonasRegistradas() {
+        // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
         try {
+            // Devuelve el listado de la busqueda
             return em.createQuery("SELECT p FROM Persona p", Persona.class).getResultList();
         } finally {
             em.close();
@@ -184,9 +205,12 @@ public class PersonaDAO {
     }
     
     
+    // Se emplea este metodo para devolver una unica persona a buscar por su cedula
     public Persona BuscarPersonaPorCedula(String cedula){
+        // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
         try {
+            // Devuelve un objeto de la persona a buscar
             return em.createQuery("SELECT p FROM Persona p WHERE p.numIdentificacion = :cedula", Persona.class)
                     .setParameter("cedula", cedula)
                     .getSingleResult();
