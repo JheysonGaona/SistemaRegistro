@@ -12,6 +12,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
+import modelo.Fidelidad;
 import modelo.Persona;
 import negocio.PersonaServicio;
 
@@ -84,6 +86,9 @@ public class SistemaUsuario extends javax.swing.JFrame {
         btnDeleteUser = new javax.swing.JButton();
         lblListUserRegister = new javax.swing.JLabel();
         btnClearUser = new javax.swing.JButton();
+        lblDateUser1 = new javax.swing.JLabel();
+        txtDirectionUser = new javax.swing.JTextField();
+        checkAfiliacion = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -224,6 +229,23 @@ public class SistemaUsuario extends javax.swing.JFrame {
             }
         });
 
+        lblDateUser1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDateUser1.setText("Dirección");
+
+        txtDirectionUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtDirectionUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDirectionUserKeyPressed(evt);
+            }
+        });
+
+        checkAfiliacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        checkAfiliacion.setText("Desea afiliarse");
+        checkAfiliacion.setIconTextGap(5);
+        checkAfiliacion.setMaximumSize(new java.awt.Dimension(140, 40));
+        checkAfiliacion.setMinimumSize(new java.awt.Dimension(140, 40));
+        checkAfiliacion.setPreferredSize(new java.awt.Dimension(140, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,23 +260,27 @@ public class SistemaUsuario extends javax.swing.JFrame {
                         .addComponent(btnDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnClearUser, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblSystemUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNameUser, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                    .addComponent(lblNameUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtNumIdUser)
-                            .addComponent(btnRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblDateUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEmailUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtEmailUser)
-                            .addComponent(txtDateUser))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblSystemUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtNameUser, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                        .addComponent(lblNameUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(26, 26, 26)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtNumIdUser)
+                                .addComponent(lblDateUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblEmailUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtEmailUser)
+                                .addComponent(txtDateUser)
+                                .addComponent(lblDateUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtDirectionUser))
+                            .addComponent(checkAfiliacion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,6 +296,9 @@ public class SistemaUsuario extends javax.swing.JFrame {
                     .addComponent(lblListUserRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblLastnameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,14 +320,19 @@ public class SistemaUsuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(lblDateUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDirectionUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(checkAfiliacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnRegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnUpdateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnClearUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addComponent(btnDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))))
         );
 
         pack();
@@ -340,15 +374,12 @@ public class SistemaUsuario extends javax.swing.JFrame {
         String texto = this.txtDateUser.getText().replaceAll("[^\\d]", "");
         StringBuilder formateado = new StringBuilder();
         
-        int len = texto.length();
-
         for (int i = 0; i < texto.length() && i < 8; i++) {
             formateado.append(texto.charAt(i));
             if ((i == 1 || i == 3)) {
                 formateado.append("-");
             }
         }
-
         this.txtDateUser.setText(formateado.toString());
     }//GEN-LAST:event_txtDateUserKeyPressed
 
@@ -360,14 +391,25 @@ public class SistemaUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNumIdUserKeyTyped
 
+    private void txtDirectionUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDirectionUserKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDirectionUserKeyPressed
+
     
     // Se emplea este metodo para poder registrar una nueva persona en la DB
     private void RegistrarNuevaPersona() {
         // Si el formulario esta lleno proceder a enviarlo a la capa de negocio
         if(ValidarFormulario()){           
-            Persona nuevaPersona = GenerarDatosPersona();
+            Cliente nuevaPersona = GenerarDatosPersona();
             // Se valida si la persona no sea nula, si es asi acaba el metodo
             if(nuevaPersona == null) return;
+            // Esta marcado el boton de afiliacion
+            if(this.checkAfiliacion.isSelected()){
+                // Cliente cliente, int puntosAcumulados, int puntosCanjeados,
+                // LocalDate fechaAfiliacion, LocalDate ultimaActualizacion
+                Fidelidad fidelidad = new Fidelidad(nuevaPersona, 0, 0, LocalDate.now());
+                nuevaPersona.setFidelidad(fidelidad);
+            }
             // [0] ya existe la persomna  [1] registro de persona exitoso
             // [2] Error interno [3] la persona es menor de edad
             int registro = servicio.AgregarNuevaPersona(nuevaPersona);
@@ -411,7 +453,7 @@ public class SistemaUsuario extends javax.swing.JFrame {
             if (filaSeleccionada >= 0) {
                 // Si el formulario esta lleno proceder a enviarlo a la capa de negocio
                 if(ValidarFormulario()) {
-                    Persona actualizarPersona = GenerarDatosPersona();
+                    Cliente actualizarPersona = GenerarDatosPersona();
                     // Se valida si la persona no sea nula, si es asi acaba el metodo
                     if(actualizarPersona == null) return;
                     // Se obtiene el id de la persona
@@ -467,13 +509,14 @@ public class SistemaUsuario extends javax.swing.JFrame {
     
     // Se emplea este metodo para poder generar los datos de la persona
     // tanto para cuando se crea como para cuando se actualiza
-    private Persona GenerarDatosPersona(){
-        Persona nuevaPersona = null;
+    private Cliente GenerarDatosPersona(){
+        Cliente nuevaPersona = null;
         String nombre = this.txtNameUser.getText();
         String apellido = this.txtLastnameUser.getText();
         String numId = this.txtNumIdUser.getText();
         String correo = this.txtEmailUser.getText();
         String fechaNac = this.txtDateUser.getText();
+        String direccion = this.txtDirectionUser.getText();
         // Se genera un bloque try para que la fecha sea correcta
         try {
             String[] fechaSeparada = fechaNac.split("-");
@@ -481,9 +524,10 @@ public class SistemaUsuario extends javax.swing.JFrame {
             int mes = Integer.parseInt(fechaSeparada[1]);
             int anio = Integer.parseInt(fechaSeparada[2]);
             LocalDate fechaNacimiento = LocalDate.of(anio, mes, dia);
-
-            nuevaPersona = new Persona(nombre, apellido, numId,
-                correo, fechaNacimiento);
+            
+            nuevaPersona = new Cliente(nombre, apellido, numId, correo,
+                    fechaNacimiento, direccion);
+            
         }catch(DateTimeParseException ex){
             MostrarMensajePanel(ex.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -621,8 +665,10 @@ public class SistemaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteUser;
     private javax.swing.JButton btnRegisterUser;
     private javax.swing.JButton btnUpdateUser;
+    private javax.swing.JCheckBox checkAfiliacion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDateUser;
+    private javax.swing.JLabel lblDateUser1;
     private javax.swing.JLabel lblEmailUser;
     private javax.swing.JLabel lblLastnameUser;
     private javax.swing.JLabel lblListUserRegister;
@@ -631,6 +677,7 @@ public class SistemaUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lblSystemUser;
     private javax.swing.JTable tbListUser;
     private javax.swing.JTextField txtDateUser;
+    private javax.swing.JTextField txtDirectionUser;
     private javax.swing.JTextField txtEmailUser;
     private javax.swing.JTextField txtLastnameUser;
     private javax.swing.JTextField txtNameUser;

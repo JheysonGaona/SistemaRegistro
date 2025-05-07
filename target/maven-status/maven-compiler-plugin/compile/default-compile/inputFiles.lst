@@ -2,8 +2,11 @@ C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\jav
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\datos\FacturaDAO.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\datos\PersonaDAO.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\datos\ProductoDAO.java
+C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\modelo\Cliente.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\modelo\DetalleFactura.java
+C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\modelo\Empleado.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\modelo\Factura.java
+C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\modelo\Fidelidad.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\modelo\Persona.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\modelo\Producto.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\negocio\FacturaServicio.java

@@ -14,8 +14,9 @@ import javax.persistence.*;
  */
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "usuario")
-public class Persona {
+public abstract class Persona {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +31,7 @@ public class Persona {
     @Column(nullable = false, unique = true)
     private String numIdentificacion;
     
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String correo;
     
     @Column(nullable = false)

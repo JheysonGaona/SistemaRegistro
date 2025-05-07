@@ -6,6 +6,9 @@
     <class>modelo.DetalleFactura</class>
     <class>modelo.Factura</class>
     <class>modelo.Producto</class>
+    <class>modelo.Cliente</class>
+    <class>modelo.Empleado</class>
+    <class>modelo.Fidelidad</class>
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/persona_database?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="jakarta.persistence.jdbc.user" value="root"/>

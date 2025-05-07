@@ -7,6 +7,7 @@ package datos;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import modelo.Cliente;
 import modelo.Persona;
 import util.PersistenceUtil;
 
@@ -90,7 +91,7 @@ public class PersonaDAO {
     // [2] Error interno
     // Se emplea este metodo para verificar si existe la persona por su cedula
     // y si no existe se procede a registrarla
-    public int RegistrarPersona(Persona personaAgregar){
+    public int RegistrarPersona(Cliente personaAgregar){
         // Inicia la sesion de trabajo con la base de datos
         EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
         try {

@@ -8,6 +8,7 @@ import modelo.Persona;
 import datos.PersonaDAO;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Cliente;
 /*
 import java.sql.SQLException;
 */
@@ -28,7 +29,7 @@ public class PersonaServicio {
     
     // [0] ya existe la persona  [1] registro de persona exitoso
     // [2] Error interno [3] la persona es menor de edad
-    public int AgregarNuevaPersona(Persona persona){
+    public int AgregarNuevaPersona(Cliente persona){
         persona.CalcularEdad();
         // se verifica que la persona sea mayor de edad para registrar
         if(persona.getEdad() >= 18){

@@ -37,26 +37,31 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnClearUser" min="-2" pref="130" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="btnRegisterUser" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblSystemUser" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtNameUser" pref="190" max="32767" attributes="0"/>
-                                  <Component id="lblNameUser" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lblSystemUser" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtNameUser" pref="190" max="32767" attributes="0"/>
+                                      <Component id="lblNameUser" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblLastnameUser" min="-2" pref="190" max="-2" attributes="0"/>
+                                      <Component id="txtLastnameUser" min="-2" pref="190" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblLastnameUser" min="-2" pref="190" max="-2" attributes="0"/>
-                                  <Component id="txtLastnameUser" min="-2" pref="190" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="txtNumIdUser" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblDateUser" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblEmailUser" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtEmailUser" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtDateUser" max="32767" attributes="0"/>
+                              <Component id="lblDateUser1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtDirectionUser" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="txtNumIdUser" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnRegisterUser" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblDateUser" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblEmailUser" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtEmailUser" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtDateUser" max="32767" attributes="0"/>
+                          <Component id="checkAfiliacion" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -79,7 +84,11 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblLastnameUser" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="lblNameUser" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
@@ -102,6 +111,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtDateUser" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblDateUser1" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtDirectionUser" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="checkAfiliacion" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnRegisterUser" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -109,10 +124,9 @@
                           <Component id="btnClearUser" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="btnDeleteUser" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -388,6 +402,44 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearUserActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDateUser1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Direcci&#xf3;n"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtDirectionUser">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDirectionUserKeyPressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="checkAfiliacion">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Desea afiliarse"/>
+        <Property name="iconTextGap" type="int" value="5"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[140, 40]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[140, 40]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[140, 40]"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -577,6 +577,7 @@ public class SistemaFactura extends javax.swing.JFrame {
         for (DetalleFactura detalleActual : this.detallesFactura) {
             float total = detalleActual.getCantidad() * detalleActual.getProducto().getPrecio();
             subTotal += total;
+            
             Object[] fila = new Object[] {
                 detalleActual.getCantidad(),
                 detalleActual.getProducto().getNombre(),
