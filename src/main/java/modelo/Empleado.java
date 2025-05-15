@@ -14,42 +14,56 @@ import javax.persistence.*;
 @Entity
 @Table(name = "empleado")
 public class Empleado extends Persona{
-    
-    public enum RolEmpleado{
-        Cajero,
-        Supervisor,
-        Administrativo
-    }
-    
-    @Enumerated(EnumType.STRING)
-    private RolEmpleado rol;
+        
+    @Column(nullable = false)
+    private String rol;
 
+    @Column(nullable = false)
     private LocalDate fechaIngreso;
 
+    @Column
     private boolean activo;
     
+    @Column
+    private String clave;
     
+    
+    // Constructor vacio
     public Empleado() {
         
     }
     
     
+    // Constructor con parametros
     public Empleado(String nombre, String apellido, String numIdentificacion,
-            String correo, LocalDate fechaNacimiento, int edad, RolEmpleado rol,
+            String correo, LocalDate fechaNacimiento, String rol,
             LocalDate fechaIngreso, boolean activo) {
-        super(nombre, apellido, numIdentificacion, correo, fechaNacimiento, edad);
+        super(nombre, apellido, numIdentificacion, correo, fechaNacimiento);
         this.rol = rol;
         this.fechaIngreso = fechaIngreso;
         this.activo = activo;
+        this.clave = numIdentificacion;
+    }
+    
+    
+        // Constructor con parametros
+    public Empleado(int id, String nombre, String apellido, String numIdentificacion,
+            String correo, LocalDate fechaNacimiento, String rol,
+            LocalDate fechaIngreso, boolean activo, String clave) {
+        super(nombre, apellido, numIdentificacion, correo, fechaNacimiento);
+        this.rol = rol;
+        this.fechaIngreso = fechaIngreso;
+        this.activo = activo;
+        this.clave = clave;
     }
 
     
     // Getters and Setters
-    public RolEmpleado getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(RolEmpleado rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 

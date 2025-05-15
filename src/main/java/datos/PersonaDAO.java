@@ -17,35 +17,6 @@ import util.PersistenceUtil;
  */
 public class PersonaDAO {
     
-    
-    public PersonaDAO(){
-        
-    }
-    
-    
-    // Se emplea este metodo para poder agregar la persona
-    public void AgregarPersona(Persona personaAgregar){
-        // Inicia la sesion de trabajo con la base de datos
-        EntityManager em = PersistenceUtil.getEntityManagerFactory().createEntityManager();
-        try {
-            // Se inicia la transicion
-            em.getTransaction().begin();
-            
-            // Se inserta la persona
-            em.persist(personaAgregar);
-            
-            // Confirmar y guardar los cambios
-            em.getTransaction().commit();
-        } catch(Exception ex){
-            // Revertir todo, no guardar nada
-            em.getTransaction().rollback();
-            System.err.println("Error de sesion de trabajo: " + ex.getMessage());
-        }finally{
-            em.close();
-        }
-    }
-    
-    
     // [0] ya existe la persomna  [1] no existe la persona, registro exitoso
     // [2] Hubo un error inesperado
     // Se emplea este petodo para verificar si existe primero la persona

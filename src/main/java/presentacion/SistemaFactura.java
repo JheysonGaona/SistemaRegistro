@@ -126,6 +126,8 @@ public class SistemaFactura extends javax.swing.JFrame {
         lblCodeProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCodeProduct.setText("Buscar producto por Código");
 
+        txtCodeProduct.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         tblListDetails.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tblListDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -199,7 +201,7 @@ public class SistemaFactura extends javax.swing.JFrame {
         lblHeaderName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeaderName1.setText("DETALLES DE LA FACTURA");
 
-        lblInfoProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblInfoProduct.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblInfoProduct.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblInfoProduct.setText("Información del producto comprado");
 
@@ -231,7 +233,7 @@ public class SistemaFactura extends javax.swing.JFrame {
         txtNameUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNameUser.setEnabled(false);
 
-        lblHeaderName3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblHeaderName3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblHeaderName3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblHeaderName3.setText("Información del Cliente a facturar:");
 

@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @Table(name = "cliente")
 public class Cliente extends Persona {
     
+    @Column(nullable = true)
     private String direccion;
     
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL,

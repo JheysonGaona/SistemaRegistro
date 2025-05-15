@@ -39,29 +39,27 @@
                   </Group>
                   <Component id="btnRegisterUser" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblSystemUser" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtNameUser" pref="190" max="32767" attributes="0"/>
-                                      <Component id="lblNameUser" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblLastnameUser" min="-2" pref="190" max="-2" attributes="0"/>
-                                      <Component id="txtLastnameUser" min="-2" pref="190" max="-2" attributes="0"/>
-                                  </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblSystemUser" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtNameUser" pref="190" max="32767" attributes="0"/>
+                                  <Component id="lblNameUser" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="txtNumIdUser" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblDateUser" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblEmailUser" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtEmailUser" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtDateUser" max="32767" attributes="0"/>
-                              <Component id="lblDateUser1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtDirectionUser" alignment="0" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblLastnameUser" min="-2" pref="190" max="-2" attributes="0"/>
+                                  <Component id="txtLastnameUser" min="-2" pref="190" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="checkAfiliacion" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="txtNumIdUser" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblDateUser" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblEmailUser" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtEmailUser" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtDateUser" max="32767" attributes="0"/>
+                          <Component id="lblDateUser1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="checkActive" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="cmbRol" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -112,10 +110,10 @@
                       <Component id="txtDateUser" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lblDateUser1" min="-2" pref="25" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtDirectionUser" min="-2" pref="35" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="checkAfiliacion" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Component id="cmbRol" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="checkActive" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnRegisterUser" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -138,7 +136,7 @@
           <Font name="Segoe UI" size="12" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="SISTEMA USUARIO"/>
+        <Property name="text" type="java.lang.String" value="SISTEMA DE REGISTRO DE EMPELADOS"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLastnameUser">
@@ -381,7 +379,7 @@
           <Font name="Segoe UI" size="12" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="LISTA DE USUARIOS REGISTRADOS"/>
+        <Property name="text" type="java.lang.String" value="LISTA DE EMPLEADOS REGISTRADOS"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnClearUser">
@@ -408,27 +406,15 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Direcci&#xf3;n"/>
+        <Property name="text" type="java.lang.String" value="Rol o Cargo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDirectionUser">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDirectionUserKeyPressed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="checkAfiliacion">
+    <Component class="javax.swing.JCheckBox" name="checkActive">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Desea afiliarse"/>
+        <Property name="text" type="java.lang.String" value="Cargo activado"/>
         <Property name="iconTextGap" type="int" value="5"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[140, 40]"/>
@@ -440,6 +426,29 @@
           <Dimension value="[140, 40]"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbRol">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="- - Seleccione un Rol - -"/>
+            <StringItem index="1" value="Cajero"/>
+            <StringItem index="2" value="Supervisor"/>
+            <StringItem index="3" value="Director"/>
+          </StringArray>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

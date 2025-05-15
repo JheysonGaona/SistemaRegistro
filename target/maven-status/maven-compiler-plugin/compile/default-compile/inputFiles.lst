@@ -1,4 +1,7 @@
+C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\datos\AutenticacionDAO.java
+C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\datos\ClienteDAO.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\datos\ConexionDB.java
+C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\datos\EmpleadoDAO.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\datos\FacturaDAO.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\datos\PersonaDAO.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\datos\ProductoDAO.java
@@ -10,9 +13,12 @@ C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\jav
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\modelo\Persona.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\modelo\Producto.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\negocio\FacturaServicio.java
+C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\negocio\LoginServicio.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\negocio\PersonaServicio.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\negocio\ProductoServicio.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\presentacion\SistemaFactura.java
+C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\presentacion\SistemaLogin.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\presentacion\SistemaProducto.java
-C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\presentacion\SistemaUsuario.java
+C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\presentacion\SistemaRegistroCliente.java
+C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\presentacion\SistemaRegistroEmpleado.java
 C:\Users\XRLab\OneDrive\Documentos\NetBeansProjects\SistemaRegistro\src\main\java\util\PersistenceUtil.java
